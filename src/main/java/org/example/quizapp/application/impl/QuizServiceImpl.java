@@ -61,48 +61,27 @@ public class QuizServiceImpl implements QuizService {
 
 	@Override
 	public int calculateScore(Map<String, String[]> userAnswers, List<Question> questions) {
-		int score = 0;
+		AtomicInteger score = new AtomicInteger();
 
 		for (Question question : questions) {
-			String key = "answer_" + question.getId();
-			String[] userResponse = userAnswers.get(key);
+			String questionId = String.valueOf(question.getId());
+			String[] userResponse = userAnswers.get(questionId);
 
-			if (userResponse != null) {
-				List<String> userChoices = Arrays.asList(userResponse);
-				List<String> correctAnswers = question.getCorrectAnswers();
+			System.out.println("🔎 Проверяем вопрос: " + question.getText());
+			System.out.println("✅ Правильный ответ: " + question.getCorrectAnswers());
+			System.out.println("❓ Ответ пользователя: " + Arrays.toString(userResponse));
 
-				System.out.println("❓ Вопрос: " + question.getText());
-				System.out.println("✅ Правильные ответы: " + correctAnswers);
-				System.out.println("🔍 Ответы пользователя: " + userChoices);
-
-				// ✅ Определяем, является ли questionType строкой
-
-
-String questionType =  question.getQuestionType();
-				// ✅ Проверяем MULTIPLE_CHOICE
-				if (questionType .equals("MULTIPLE_CHOICE")) {
-					if (userChoices.containsAll(correctAnswers) && correctAnswers.containsAll(userChoices)) {
-						score++;
-						System.out.println("🎯 Верный ответ! +1 балл");
-					} else {
-						System.out.println("❌ Ошибка. Ответы не совпадают.");
-					}
-				}
-				// ✅ Для SINGLE_CHOICE и TEXT просто сравниваем строки
-				else {
-					if (correctAnswers.contains(userChoices.get(0))) {
-						score++;
-						System.out.println("🎯 Верный ответ! +1 балл");
-					} else {
-						System.out.println("❌ Ошибка. Неверный ответ.");
-					}
-				}
+			if (userResponse != null && Arrays.asList(userResponse).containsAll(question.getCorrectAnswers())) {
+				score.incrementAndGet();
+				System.out.println("🎯 Верный ответ! Балл добавлен.");
+			} else {
+				System.out.println("❌ Неверный ответ.");
 			}
 		}
 
-		System.out.println("🔢 Итоговый балл: " + score);
-		return score;
+		return score.get();
 	}
+
 
 
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class QuizController {
 		List<Question> questions = quizService.getQuestions();
 
 		if (currentIndex >= questions.size()) {
-			return "redirect:/results";
+			return "redirect:/result";
 		}
 
 		model.addAttribute("question", questions.get(currentIndex));
@@ -47,16 +48,19 @@ public class QuizController {
 	}
 
 	@PostMapping("/submit")
-	public String submitAnswer(@RequestParam("answer") String answer,
-							   @RequestParam("currentIndex") Integer currentIndex,
+	public String submitAnswer(@RequestParam Map<String, String> rawAnswers,
 							   @ModelAttribute("userAnswers") Map<String, String[]> userAnswers,
+							   @ModelAttribute("currentIndex") Integer currentIndex,
 							   Model model) {
 		List<Question> questions = quizService.getQuestions();
 
 		if (currentIndex < questions.size()) {
 			String questionId = String.valueOf(questions.get(currentIndex).getId());
-			userAnswers.put(questionId, new String[]{answer});
+			userAnswers.put(questionId, new String[]{rawAnswers.get("answer")});
 		}
+
+		// Выведем в лог, что сохраняем
+		System.out.println("📌 Сохранён ответ: Вопрос ID " + currentIndex + " -> " + rawAnswers.get("answer"));
 
 		model.addAttribute("userAnswers", userAnswers);
 		model.addAttribute("currentIndex", currentIndex + 1);
@@ -64,14 +68,20 @@ public class QuizController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/results")
+	@GetMapping("/result")
 	public String showResults(@ModelAttribute("userAnswers") Map<String, String[]> userAnswers, Model model) {
 		List<Question> questions = quizService.getQuestions();
+
+		// Выведем ответы в лог
+		System.out.println("📩 Ответы пользователя:");
+		userAnswers.forEach((key, value) -> System.out.println("Вопрос ID: " + key + " | Ответ: " + Arrays.toString(value)));
+
 		int score = quizService.calculateScore(userAnswers, questions);
 
 		model.addAttribute("score", score);
 		return "result";
 	}
+
 
 
 }
