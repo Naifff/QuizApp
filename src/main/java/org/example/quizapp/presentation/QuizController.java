@@ -5,22 +5,16 @@ import org.example.quizapp.application.QuizService;
 import org.example.quizapp.domain.Question;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/quiz")  // Все маршруты начинаются с /quiz
+@RequestMapping("/quiz")
 public class QuizController {
 
 	private final QuizService quizService;
-	private int currentQuestionIndex = 0;
-	private List<Question> questions;
 
 	public QuizController(QuizService quizService) {
 		this.quizService = quizService;
@@ -28,106 +22,58 @@ public class QuizController {
 
 	@GetMapping("/start")
 	public String startQuiz(HttpSession session) {
-		session.invalidate(); // Очистка текущей сессии
-//		session = request.getSession(true); // Создание новой сессии
-
+		List<Question> questions = quizService.getAllQuestions();
+		session.setAttribute("questions", questions);
 		session.setAttribute("questionIndex", 0);
 		session.setAttribute("score", 0);
+		return "redirect:/quiz/next";
+	}
 
-		questions = quizService.getAllQuestions(); // Получаем все вопросы
-		Map<Long, List<String>> correctAnswers = new HashMap<>();
-		Map<Long, String> questionTypes = new HashMap<>();
+	@GetMapping("/next")
+	public String nextQuestion(HttpSession session, Model model) {
+		List<Question> questions = (List<Question>) session.getAttribute("questions");
+		Integer questionIndex = (Integer) session.getAttribute("questionIndex");
 
-		for (Question question : questions) {
-			correctAnswers.put(question.getId(), question.getCorrectAnswers());
-			questionTypes.put(question.getId(), question.getType().name());
+		if (questions == null || questionIndex == null || questionIndex >= questions.size()) {
+			return "redirect:/quiz/result";
 		}
 
-		session.setAttribute("correctAnswers", correctAnswers);
-		session.setAttribute("questionTypes", questionTypes);
+		Question question = questions.get(questionIndex);
+		model.addAttribute("question", question);
+		model.addAttribute("questionIndex", questionIndex + 1);
+		model.addAttribute("totalQuestions", questions.size());
+
+		session.setAttribute("questionIndex", questionIndex + 1); // Увеличиваем индекс
+		return "quiz";
+	}
+
+	@PostMapping("/submit")
+	public String submitAnswer(@RequestParam("questionId") Long questionId,
+							   @RequestParam("answers") List<String> userAnswers,
+							   HttpSession session) {
+
+		List<Question> questions = (List<Question>) session.getAttribute("questions");
+		Integer questionIndex = (Integer) session.getAttribute("questionIndex");
+		int score = (int) session.getAttribute("score");
+
+		if (questionIndex == null || questions == null || questionIndex == 0) {
+			return "redirect:/quiz/start"; // Перезапуск теста, если данные потеряны
+		}
+
+		Question question = questions.get(questionIndex - 1); // Получаем текущий вопрос
+		if (question.getCorrectAnswers().containsAll(userAnswers) && userAnswers.containsAll(question.getCorrectAnswers())) {
+			score += 1; // Начисляем балл, если ответ полностью совпадает
+		}
+
+		session.setAttribute("score", score);
 
 		return "redirect:/quiz/next";
 	}
 
-
-
-
-
-
-
-	@GetMapping("/next")
-	public String nextQuestion(Model model, HttpSession session) {
-		Integer index = (Integer) session.getAttribute("questionIndex");
-		if (index == null) {
-			index = 0;
-		}
-
-		if (questions == null || index >= questions.size()) {
-			return "redirect:/quiz/result";
-		}
-
-		model.addAttribute("question", questions.get(index));
-		model.addAttribute("questionIndex", index + 1);
-		model.addAttribute("totalQuestions", questions.size());
-
-		session.setAttribute("questionIndex", index + 1);  // Инкремент после показа
-		return "quiz";
-	}
-
-
-
-
 	@GetMapping("/result")
 	public String showResult(HttpSession session, Model model) {
-		Integer score = (Integer) session.getAttribute("score");
-		if (score == null) {
-			score = 0;
-		}
-
+		int score = (int) session.getAttribute("score");
 		model.addAttribute("score", score);
-		System.out.println("Отображаемый балл: " + score);
-
 		return "result";
 	}
-
-
-	@PostMapping("/submit")
-	public String submitQuiz(@RequestParam Map<Long, String> userAnswers, HttpSession session, Model model) {
-		// Логируем входные данные
-		System.out.println("Ответы пользователя: " + userAnswers);
-
-		// Получаем правильные ответы и типы вопросов
-		Map<Long, List<String>> correctAnswers = (Map<Long, List<String>>) session.getAttribute("correctAnswers");
-		Map<Long, String> questionTypes = (Map<Long, String>) session.getAttribute("questionTypes");
-
-		if (correctAnswers == null || questionTypes == null) {
-			System.err.println("Ошибка: нет данных о правильных ответах или типах вопросов!");
-			return "redirect:/quiz/result";
-		}
-
-		System.out.println("Правильные ответы: " + correctAnswers);
-		System.out.println("Типы вопросов: " + questionTypes);
-
-		// Вычисляем баллы
-		int score = quizService.calculateScore(userAnswers, correctAnswers, questionTypes);
-		System.out.println("Подсчитанный балл: " + score);
-
-		// Сохраняем балл в сессии
-		session.setAttribute("score", score);
-
-		return "redirect:/quiz/result";
-	}
-
-
-
-
-
-	@GetMapping("/")
-	public String redirectToQuiz() {
-		return "redirect:/quiz/start";
-	}
-
-
-
-
 }

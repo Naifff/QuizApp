@@ -12,23 +12,18 @@ public class Question {
 
 	private String text;
 
-	private List<String> correctAnswers; // <-- Должно быть объявлено
+	@ElementCollection
+	private List<String> options;
 
+	@ElementCollection
+	private List<String> correctAnswers;
 
 	@Enumerated(EnumType.STRING)
 	private QuestionType type;
 
-	@ElementCollection
-	private List<String> options;
+	public Question() {}
 
-	private String correctAnswer;
-
-	public Question() {
-	}
-
-	// Новый конструктор для всех типов вопросов
-	public Question(Long id, String text, List<String> options, List<String> correctAnswers, QuestionType type) {
-		this.id = id;
+	public Question(String text, List<String> options, List<String> correctAnswers, QuestionType type) {
 		this.text = text;
 		this.options = options;
 		this.correctAnswers = correctAnswers;
@@ -43,26 +38,19 @@ public class Question {
 		return text;
 	}
 
-	public QuestionType getType() {
-		return type;
-	}
-
 	public List<String> getOptions() {
 		return options;
 	}
 
-	public String getCorrectAnswer() {
-		return correctAnswer;
-	}
-
-	// Геттер для correctAnswers
 	public List<String> getCorrectAnswers() {
 		return correctAnswers;
 	}
 
-	// Сеттер для correctAnswers
-	public void setCorrectAnswers(List<String> correctAnswers) {
-		this.correctAnswers = correctAnswers;
+	public QuestionType getType() {
+		return type;
 	}
 
+	public boolean isMultipleChoice() {
+		return correctAnswers.size() > 1;
+	}
 }

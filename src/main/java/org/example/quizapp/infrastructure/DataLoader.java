@@ -20,28 +20,28 @@ public class DataLoader {
 	public void loadQuestions() {
 		questionRepository.save(new Question(
 				"Что такое JDK, JVM, JRE?",
-				QuestionType.SINGLE_CHOICE,
 				List.of(
 						"JDK - набор инструментов для разработки",
 						"JDK - библиотека классов Java",
 						"JDK - компилятор Java",
 						"JDK - язык программирования"
 				),
-				"JDK - набор инструментов для разработки"
+				List.of("JDK - набор инструментов для разработки"),
+				QuestionType.SINGLE_CHOICE
 		));
 
 		questionRepository.save(new Question(
 				"Какие методы есть в Object?",
-				QuestionType.MULTIPLE_CHOICE,
 				List.of("equals()", "toString()", "hashCode()", "sort()", "clone()", "notify()"),
-				"equals(),toString(),hashCode(),clone(),notify()" // несколько правильных ответов
+				List.of("equals()", "toString()", "hashCode()", "clone()", "notify()"),
+				QuestionType.MULTIPLE_CHOICE
 		));
 
 		questionRepository.save(new Question(
 				"Что выведет код?",
-				QuestionType.TEXT_INPUT,
 				null,
-				"321"
+				List.of("321"),
+				QuestionType.TEXT_INPUT
 		));
 	}
 }

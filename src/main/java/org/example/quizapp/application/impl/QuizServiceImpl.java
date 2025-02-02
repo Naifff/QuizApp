@@ -6,7 +6,6 @@ import org.example.quizapp.infrastructure.QuestionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -20,60 +19,31 @@ public class QuizServiceImpl implements QuizService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
-	public List<Question> getQuestions() {
-		List<Question> questions = questionRepository.findAll();
-		questions.forEach(q -> q.getOptions().size()); // Принудительно загружаем варианты ответа
-		return questions;
-	}
-
-	@Override
-	public int calculateScore(Map<Long, String> userAnswers,
-							  Map<Long, List<String>> correctAnswers,
-							  Map<Long, String> questionTypes) {
-		int score = 0;
-
-		for (Long questionId : userAnswers.keySet()) {
-			String userAnswer = userAnswers.get(questionId);
-			List<String> correct = correctAnswers.get(questionId);
-			String questionType = questionTypes.get(questionId);
-
-			if (correct == null) {
-				System.err.println("Ошибка: нет правильного ответа для вопроса " + questionId);
-				continue;
-			}
-
-			if (questionType == null) {
-				System.err.println("Ошибка: нет типа вопроса для " + questionId);
-				continue;
-			}
-
-			System.out.println("Проверка вопроса " + questionId + ": пользовательский ответ = " + userAnswer + ", правильный = " + correct);
-
-			if (questionType.equalsIgnoreCase("SINGLE") && correct.contains(userAnswer)) {
-				score++;
-			} else if (questionType.equalsIgnoreCase("MULTIPLE") && userAnswer != null) {
-				List<String> userAnswersList = Arrays.asList(userAnswer.split(","));
-				if (userAnswersList.containsAll(correct) && correct.containsAll(userAnswersList)) {
-					score++;
-				}
-			}
-		}
-
-		System.out.println("Финальный балл: " + score);
-		return score;
-	}
-
-
-
-
-	@Transactional  // Убедимся, что сессия активна
-	@Override
+	@Transactional(readOnly = true)  // Открываем сессию для Hibernate
 	public List<Question> getAllQuestions() {
 		List<Question> questions = questionRepository.findAll();
-		// Явно загружаем options, чтобы избежать LazyInitializationException
-		questions.forEach(q -> q.getOptions().size());
+
+		// Принудительно загружаем связанные коллекции
+		for (Question question : questions) {
+			question.getOptions().size();  // Это инициализирует коллекцию options
+			question.getCorrectAnswers().size();  // Это инициализирует correctAnswers
+		}
+
 		return questions;
 	}
 
+	@Override
+	public int calculateScore(Map<Long, String> userAnswers, List<Question> questions) {
+		int score = 0;
+
+		for (Question question : questions) {
+			String correctAnswer = String.join(",", question.getCorrectAnswers());
+			String userAnswer = userAnswers.get(question.getId());
+
+			if (userAnswer != null && userAnswer.equalsIgnoreCase(correctAnswer)) {
+				score++;
+			}
+		}
+		return score;
+	}
 }

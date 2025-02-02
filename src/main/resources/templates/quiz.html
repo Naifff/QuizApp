@@ -1,38 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
 <head>
-    <title>Тест</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вопрос</title>
 </head>
 <body>
-<h1>Вопрос <span th:text="${questionIndex != null ? questionIndex + 1 : 1}"></span>
-    из <span th:text="${totalQuestions}"></span>
-</h1>
-
+<h1>Вопрос <span th:text="${questionIndex}"></span> из <span th:text="${totalQuestions}"></span></h1>
+<p th:text="${question.text}"></p>
 
 <form action="/quiz/submit" method="post">
-    <input type="hidden" name="questionId" th:value="${question.id}" />
+    <input type="hidden" name="questionId" th:value="${question.id}">
 
-    <p th:text="${question.text}"></p>
-
-    <!-- Если вопрос с одним вариантом ответа -->
-    <div th:if="${question.type.name() == 'SINGLE_CHOICE'}">
+    <!-- Проверяем тип вопроса -->
+    <div th:if="${question.options != null and not #lists.isEmpty(question.options)}">
         <div th:each="option : ${question.options}">
-            <input type="radio" name="answer" th:value="${option}" />
-            <label th:text="${option}"></label>
+            <label>
+                <input th:if="${question.isMultipleChoice}" type="checkbox" name="answers" th:value="${option}">
+                <input th:if="${!question.isMultipleChoice}" type="radio" name="answers" th:value="${option}">
+                <span th:text="${option}"></span>
+            </label>
         </div>
     </div>
 
-    <!-- Если вопрос с несколькими вариантами ответа -->
-    <div th:if="${question.type.name() == 'MULTIPLE_CHOICE'}">
-        <div th:each="option : ${question.options}">
-            <input type="checkbox" name="answers" th:value="${option}" />
-            <label th:text="${option}"></label>
-        </div>
-    </div>
-
-    <!-- Если вопрос требует текстовый ответ -->
-    <div th:if="${question.type.name() == 'TEXT_INPUT'}">
-        <input type="text" name="answer" />
+    <!-- Поле ввода для текстового ответа -->
+    <div th:if="${question.options == null or #lists.isEmpty(question.options)}">
+        <input type="text" name="answers">
     </div>
 
     <button type="submit">Далее</button>
