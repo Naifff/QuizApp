@@ -1,34 +1,17 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вопрос</title>
-</head>
-<body>
-<h1>Вопрос <span th:text="${questionIndex}"></span> из <span th:text="${totalQuestions}"></span></h1>
-<p th:text="${question.text}"></p>
-
 <form action="/quiz/submit" method="post">
-    <input type="hidden" name="questionId" th:value="${question.id}">
+    <p th:text="${question.text}"></p>
 
-    <!-- Проверяем тип вопроса -->
-    <div th:if="${question.options != null and not #lists.isEmpty(question.options)}">
-        <div th:each="option : ${question.options}">
-            <label>
-                <input th:if="${question.isMultipleChoice}" type="checkbox" name="answers" th:value="${option}">
-                <input th:if="${!question.isMultipleChoice}" type="radio" name="answers" th:value="${option}">
-                <span th:text="${option}"></span>
-            </label>
-        </div>
+    <div th:if="${question.questionType == T(org.example.quizapp.domain.QuestionType).MULTIPLE_CHOICE}">
+        <input type="checkbox" name="answer" th:each="option : ${question.options}" th:value="${option}" th:text="${option}" />
     </div>
 
-    <!-- Поле ввода для текстового ответа -->
-    <div th:if="${question.options == null or #lists.isEmpty(question.options)}">
-        <input type="text" name="answers">
+    <div th:if="${question.questionType == T(org.example.quizapp.domain.QuestionType).SINGLE_CHOICE}">
+        <input type="radio" name="answer" th:each="option : ${question.options}" th:value="${option}" th:text="${option}" />
+    </div>
+
+    <div th:if="${question.questionType == T(org.example.quizapp.domain.QuestionType).TEXT}">
+        <input type="text" name="answer" />
     </div>
 
     <button type="submit">Далее</button>
 </form>
-</body>
-</html>

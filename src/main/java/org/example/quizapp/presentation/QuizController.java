@@ -29,46 +29,61 @@ public class QuizController {
 		return "redirect:/quiz/next";
 	}
 
-	@GetMapping("/next")
-	public String nextQuestion(HttpSession session, Model model) {
-		List<Question> questions = (List<Question>) session.getAttribute("questions");
-		Integer questionIndex = (Integer) session.getAttribute("questionIndex");
 
-		if (questions == null || questionIndex == null || questionIndex >= questions.size()) {
-			return "redirect:/quiz/result";
+	@GetMapping("/next")
+	public String nextQuestion(Model model, HttpSession session) {
+		List<Question> questions = (List<Question>) session.getAttribute("questions");
+
+		if (questions == null) {
+			questions = quizService.getAllQuestions(); // Загружаем вопросы
+			session.setAttribute("questions", questions);
 		}
 
-		Question question = questions.get(questionIndex);
+		int currentQuestionIndex = (int) session.getAttribute("questionIndex");
+
+		if (currentQuestionIndex >= questions.size()) {
+			return "redirect:/quiz/result"; // Если вопросов больше нет, переходим к результату
+		}
+
+		Question question = questions.get(currentQuestionIndex);
+
 		model.addAttribute("question", question);
-		model.addAttribute("questionIndex", questionIndex + 1);
+		model.addAttribute("questionIndex", currentQuestionIndex + 1);
 		model.addAttribute("totalQuestions", questions.size());
 
-		session.setAttribute("questionIndex", questionIndex + 1); // Увеличиваем индекс
 		return "quiz";
 	}
 
+
 	@PostMapping("/submit")
-	public String submitAnswer(@RequestParam("questionId") Long questionId,
-							   @RequestParam("answers") List<String> userAnswers,
-							   HttpSession session) {
+	public String submitQuiz(@RequestParam Map<String, String> userAnswers, HttpSession session, Model model) {
+		int currentQuestionIndex = (int) session.getAttribute("questionIndex"); // Текущий вопрос
+		List<Question> questions = (List<Question>) session.getAttribute("questions"); // Получаем список вопросов
 
-		List<Question> questions = (List<Question>) session.getAttribute("questions");
-		Integer questionIndex = (Integer) session.getAttribute("questionIndex");
+		if (questions == null || currentQuestionIndex >= questions.size()) {
+			return "redirect:/quiz/result"; // Если вопросы закончились → результат
+		}
+
+		// Получаем правильные ответы из текущего вопроса
+		Question currentQuestion = questions.get(currentQuestionIndex);
+		List<String> correctAnswers = currentQuestion.getCorrectAnswers();
+
+		// Получаем ответ пользователя
+		String userAnswer = userAnswers.get("answer"); // "answer" - name в HTML-форме
+
+		// Сравниваем ответы
 		int score = (int) session.getAttribute("score");
-
-		if (questionIndex == null || questions == null || questionIndex == 0) {
-			return "redirect:/quiz/start"; // Перезапуск теста, если данные потеряны
+		if (correctAnswers.contains(userAnswer)) {
+			score++; // Если ответ верный → увеличиваем баллы
 		}
+		session.setAttribute("score", score); // Обновляем баллы
 
-		Question question = questions.get(questionIndex - 1); // Получаем текущий вопрос
-		if (question.getCorrectAnswers().containsAll(userAnswers) && userAnswers.containsAll(question.getCorrectAnswers())) {
-			score += 1; // Начисляем балл, если ответ полностью совпадает
-		}
+		// Переходим к следующему вопросу
+		session.setAttribute("questionIndex", currentQuestionIndex + 1);
 
-		session.setAttribute("score", score);
-
-		return "redirect:/quiz/next";
+		return "redirect:/quiz/next"; // Переход к следующему вопросу
 	}
+
 
 	@GetMapping("/result")
 	public String showResult(HttpSession session, Model model) {

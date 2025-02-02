@@ -19,15 +19,15 @@ public class Question {
 	private List<String> correctAnswers;
 
 	@Enumerated(EnumType.STRING)
-	private QuestionType type;
+	private QuestionType questionType;
 
 	public Question() {}
 
-	public Question(String text, List<String> options, List<String> correctAnswers, QuestionType type) {
+	public Question(String text, List<String> options, List<String> correctAnswers, QuestionType questionType) {
 		this.text = text;
 		this.options = options;
 		this.correctAnswers = correctAnswers;
-		this.type = type;
+		this.questionType = questionType;
 	}
 
 	public Long getId() {
@@ -46,11 +46,12 @@ public class Question {
 		return correctAnswers;
 	}
 
-	public QuestionType getType() {
-		return type;
+	public QuestionType getQuestionType() {
+		return questionType;
 	}
 
+	// ✅ Добавляем метод isMultipleChoice()
 	public boolean isMultipleChoice() {
-		return correctAnswers.size() > 1;
+		return questionType == QuestionType.MULTIPLE_CHOICE;
 	}
 }

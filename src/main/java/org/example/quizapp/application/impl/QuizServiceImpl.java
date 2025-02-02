@@ -1,10 +1,8 @@
-package org.example.quizapp.application.impl;
+package org.example.quizapp.application;
 
-import org.example.quizapp.application.QuizService;
 import org.example.quizapp.domain.Question;
-import org.example.quizapp.infrastructure.QuestionRepository;
+import org.example.quizapp.infrastructure.QuestionLoader;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -12,23 +10,14 @@ import java.util.Map;
 @Service
 public class QuizServiceImpl implements QuizService {
 
-	private final QuestionRepository questionRepository;
+	private final List<Question> questions;
 
-	public QuizServiceImpl(QuestionRepository questionRepository) {
-		this.questionRepository = questionRepository;
+	public QuizServiceImpl(QuestionLoader questionLoader) {
+		this.questions = questionLoader.loadQuestions();
 	}
 
 	@Override
-	@Transactional(readOnly = true)  // Открываем сессию для Hibernate
 	public List<Question> getAllQuestions() {
-		List<Question> questions = questionRepository.findAll();
-
-		// Принудительно загружаем связанные коллекции
-		for (Question question : questions) {
-			question.getOptions().size();  // Это инициализирует коллекцию options
-			question.getCorrectAnswers().size();  // Это инициализирует correctAnswers
-		}
-
 		return questions;
 	}
 
@@ -37,13 +26,14 @@ public class QuizServiceImpl implements QuizService {
 		int score = 0;
 
 		for (Question question : questions) {
-			String correctAnswer = String.join(",", question.getCorrectAnswers());
+			String correctAnswer = String.join(",", question.getCorrectAnswers()); // Объединяем, если несколько ответов
 			String userAnswer = userAnswers.get(question.getId());
 
 			if (userAnswer != null && userAnswer.equalsIgnoreCase(correctAnswer)) {
 				score++;
 			}
 		}
+
 		return score;
 	}
 }
