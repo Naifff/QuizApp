@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Результат теста</title>
+    <title>Результаты теста</title>
 </head>
 <body>
-<h1>Ваш результат</h1>
-
+<h1>Ваш результат:</h1>
 <p th:text="'Вы набрали ' + ${score} + ' баллов.'"></p>
 
-<!-- Повторить тест -->
-<a href="/">Пройти тест заново</a>
+<form action="/" method="get">
+    <button type="submit">Пройти тест заново</button>
+</form>
 </body>
 </html>
