@@ -41,7 +41,7 @@ public class DataLoader {
 				"Что выведет код?",
 				null,
 				List.of("321"),
-				QuestionType.TEXT_INPUT
+				QuestionType.TEXT
 		));
 	}
 }

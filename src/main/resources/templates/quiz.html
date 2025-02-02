@@ -1,17 +1,18 @@
 <form action="/quiz/submit" method="post">
     <p th:text="${question.text}"></p>
 
-    <div th:if="${question.questionType == T(org.example.quizapp.domain.QuestionType).MULTIPLE_CHOICE}">
-        <input type="checkbox" name="answer" th:each="option : ${question.options}" th:value="${option}" th:text="${option}" />
-    </div>
-
-    <div th:if="${question.questionType == T(org.example.quizapp.domain.QuestionType).SINGLE_CHOICE}">
-        <input type="radio" name="answer" th:each="option : ${question.options}" th:value="${option}" th:text="${option}" />
-    </div>
-
-    <div th:if="${question.questionType == T(org.example.quizapp.domain.QuestionType).TEXT}">
+    <th:block th:if="${question.questionType.name() == 'TEXT'}">
         <input type="text" name="answer" />
-    </div>
+    </th:block>
+
+    <th:block th:if="${question.questionType.name() == 'SINGLE_CHOICE'}">
+        <input type="radio" name="answer" th:each="option : ${question.options}" th:value="${option}" th:text="${option}" />
+    </th:block>
+
+    <th:block th:if="${question.questionType.name() == 'MULTIPLE_CHOICE'}">
+        <input type="checkbox" name="answer" th:each="option : ${question.options}" th:value="${option}" th:text="${option}" />
+    </th:block>
+
 
     <button type="submit">Далее</button>
 </form>
