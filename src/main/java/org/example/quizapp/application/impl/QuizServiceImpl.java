@@ -6,6 +6,7 @@ import org.example.quizapp.infrastructure.QuestionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -32,23 +33,38 @@ public class QuizServiceImpl implements QuizService {
 							  Map<Long, String> questionTypes) {
 		int score = 0;
 
-		for (Map.Entry<Long, String> entry : userAnswers.entrySet()) {
-			Long questionId = entry.getKey();
-			String userAnswer = entry.getValue();
+		for (Long questionId : userAnswers.keySet()) {
+			String userAnswer = userAnswers.get(questionId);
+			List<String> correct = correctAnswers.get(questionId);
+			String questionType = questionTypes.get(questionId);
 
-			if (correctAnswers.containsKey(questionId)) {
-				List<String> correct = correctAnswers.get(questionId);
+			if (correct == null) {
+				System.err.println("Ошибка: нет правильного ответа для вопроса " + questionId);
+				continue;
+			}
 
-				// Проверяем, есть ли ответ пользователя среди правильных
-				if (correct.contains(userAnswer)) {
+			if (questionType == null) {
+				System.err.println("Ошибка: нет типа вопроса для " + questionId);
+				continue;
+			}
+
+			System.out.println("Проверка вопроса " + questionId + ": пользовательский ответ = " + userAnswer + ", правильный = " + correct);
+
+			if (questionType.equalsIgnoreCase("SINGLE") && correct.contains(userAnswer)) {
+				score++;
+			} else if (questionType.equalsIgnoreCase("MULTIPLE") && userAnswer != null) {
+				List<String> userAnswersList = Arrays.asList(userAnswer.split(","));
+				if (userAnswersList.containsAll(correct) && correct.containsAll(userAnswersList)) {
 					score++;
 				}
 			}
 		}
 
-		System.out.println("Final score: " + score);  // Отладочный вывод
+		System.out.println("Финальный балл: " + score);
 		return score;
 	}
+
+
 
 
 	@Transactional  // Убедимся, что сессия активна

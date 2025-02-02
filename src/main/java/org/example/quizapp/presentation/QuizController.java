@@ -39,11 +39,8 @@ public class QuizController {
 
 	@GetMapping("/next")
 	public String nextQuestion(Model model) {
-		if (questions == null || questions.isEmpty()) {
-			return "redirect:/quiz/result";  // Если вопросов нет, переходим на результат
-		}
-		if (currentQuestionIndex >= questions.size()) {
-			return "redirect:/quiz/result"; // Если вопросы кончились
+		if (questions == null || currentQuestionIndex >= questions.size()) {
+			return "redirect:/quiz/result"; // Если вопросы кончились, переходим на результат
 		}
 
 		model.addAttribute("question", questions.get(currentQuestionIndex));
@@ -51,26 +48,47 @@ public class QuizController {
 		model.addAttribute("totalQuestions", questions.size());
 
 		currentQuestionIndex++;  // Переходим к следующему вопросу
-		return "quiz";
+		return "quiz";  // Возвращаем шаблон quiz.html
 	}
 
+
+
 	@GetMapping("/result")
-	public String showResult(Model model) {
-		model.addAttribute("message", "Тест завершен!");
+	public String showResult(HttpSession session, Model model) {
+		Integer score = (Integer) session.getAttribute("score");
+		if (score == null) {
+			score = 0;
+		}
+
+		model.addAttribute("score", score);
+		System.out.println("Отображаемый балл: " + score);
+
 		return "result";
 	}
 
+
 	@PostMapping("/submit")
 	public String submitQuiz(@RequestParam Map<Long, String> userAnswers, HttpSession session, Model model) {
+		// Логируем входные данные
+		System.out.println("Ответы пользователя: " + userAnswers);
+
+		// Получаем правильные ответы и типы вопросов
 		Map<Long, List<String>> correctAnswers = (Map<Long, List<String>>) session.getAttribute("correctAnswers");
 		Map<Long, String> questionTypes = (Map<Long, String>) session.getAttribute("questionTypes");
 
-		if (correctAnswers == null || userAnswers == null) {
-			model.addAttribute("message", "Ошибка: ответы не были получены.");
-			return "error"; // Вывод ошибки, если данные отсутствуют
+		if (correctAnswers == null || questionTypes == null) {
+			System.err.println("Ошибка: нет данных о правильных ответах или типах вопросов!");
+			return "redirect:/quiz/result";
 		}
 
+		System.out.println("Правильные ответы: " + correctAnswers);
+		System.out.println("Типы вопросов: " + questionTypes);
+
+		// Вычисляем баллы
 		int score = quizService.calculateScore(userAnswers, correctAnswers, questionTypes);
+		System.out.println("Подсчитанный балл: " + score);
+
+		// Сохраняем балл в сессии
 		session.setAttribute("score", score);
 
 		return "redirect:/quiz/result";
@@ -78,10 +96,13 @@ public class QuizController {
 
 
 
+
+
 	@GetMapping("/")
 	public String redirectToQuiz() {
 		return "redirect:/quiz/start";
 	}
+
 
 
 }
