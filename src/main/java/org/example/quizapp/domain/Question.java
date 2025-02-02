@@ -24,7 +24,8 @@ public class Question {
 	public Question() {}
 
 	// Конструктор с параметрами
-	public Question(String text, List<String> options, List<String> correctAnswers, QuestionType questionType) {
+	public Question(Long id,String text, List<String> options, List<String> correctAnswers, QuestionType questionType) {
+		this.id =id;
 		this.text = text;
 		this.options = options;
 		this.correctAnswers = correctAnswers;
@@ -64,11 +65,12 @@ public class Question {
 		this.correctAnswers = correctAnswers;
 	}
 
-	public QuestionType getQuestionType() {
-		return questionType;
-	}
-
 	public void setQuestionType(QuestionType questionType) {
 		this.questionType = questionType;
+	}
+
+	// ✅ Добавь геттер для Thymeleaf
+	public String getQuestionType() {
+		return questionType.name(); // Преобразуем ENUM в String
 	}
 }

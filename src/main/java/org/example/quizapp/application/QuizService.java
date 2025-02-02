@@ -31,5 +31,5 @@ public interface QuizService {
 	 * @param questions список вопросов
 	 * @return итоговый балл
 	 */
-	int calculateScore(Map<Long, String> userAnswers, List<Question> questions);
+	int calculateScore(Map<String, String[]> userAnswers, List<Question> questions);
 }

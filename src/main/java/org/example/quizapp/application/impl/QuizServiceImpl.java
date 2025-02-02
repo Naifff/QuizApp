@@ -5,6 +5,7 @@ import org.example.quizapp.domain.Question;
 import org.example.quizapp.infrastructure.QuestionLoader;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -58,24 +59,27 @@ public class QuizServiceImpl implements QuizService {
 	}
 
 	@Override
-	public int calculateScore(Map<Long, String> userAnswers, List<Question> questions) {
-		AtomicInteger score = new AtomicInteger();
+	public int calculateScore(Map<String, String[]> userAnswers, List<Question> questions) {
+		int score = 0;
 
-		for (Map.Entry<Long, String> entry : userAnswers.entrySet()) {
-			Long questionId = entry.getKey();
-			String userAnswer = entry.getValue().trim();
+		for (Question question : questions) {
+			String key = "answer_" + question.getId();
+			String[] userResponse = userAnswers.get(key);
 
-			questions.stream()
-					.filter(q -> q.getId().equals(questionId))
-					.findFirst()
-					.ifPresent(question -> {
-						if (question.getCorrectAnswers().contains(userAnswer)) {
-							score.getAndIncrement();
-						}
-					});
+			if (userResponse != null) {
+				List<String> userChoices = Arrays.asList(userResponse);
+				if (question.getCorrectAnswers().containsAll(userChoices) && userChoices.containsAll(question.getCorrectAnswers())) {
+					score++;
+				}
+			}
 		}
 
-		System.out.println("✅ Итоговый балл (с Map): " + score);
-		return score.get();
+		System.out.println("Правильные ответы: " + questions.stream().map(Question::getCorrectAnswers).toList());
+		System.out.println("Ответы пользователя: " + userAnswers);
+		System.out.println("Финальный балл: " + score);
+
+		return score;
 	}
+
+
 }

@@ -25,21 +25,45 @@ public class QuestionLoader {
 
 			String line;
 			while ((line = reader.readLine()) != null) {
-				String[] parts = line.split(";", -1); // Учитываем пустые значения
+				System.out.println("Загружаем строку: " + line); // Проверка загрузки строк
+				String[] parts = line.split(";", -1);
 
-				if (parts.length < 4) continue;
-
-				String text = parts[1].trim(); // Убираем пробелы
+				if (parts.length < 5) {
+					System.out.println("⚠️ Ошибка парсинга строки (недостаточно данных): " + line);
+					continue;
+				}
+				Long id = Long.valueOf(parts[0]);
+				String text = parts[1].trim();
 				List<String> options = Arrays.stream(parts[2].split(","))
-						.map(String::trim) // Очищаем пробелы
+						.map(String::trim)
 						.collect(Collectors.toList());
 				List<String> correctAnswers = Arrays.stream(parts[3].split(","))
 						.map(String::trim)
 						.collect(Collectors.toList());
+				String typeStr = parts[4].trim().toUpperCase();
 
-				Question question = new Question(text, options, correctAnswers, QuestionType.MULTIPLE_CHOICE);
+				QuestionType questionType;
+				switch (typeStr) {
+					case "TEXT":
+						questionType = QuestionType.TEXT;
+						break;
+					case "SINGLE_CHOICE":
+						questionType = QuestionType.SINGLE_CHOICE;
+						break;
+					case "MULTIPLE_CHOICE":
+						questionType = QuestionType.MULTIPLE_CHOICE;
+						break;
+					default:
+						System.out.println("⚠️ Неизвестный тип вопроса: " + typeStr);
+						continue;
+				}
+
+				System.out.println("✅ Загружен вопрос: " + text + " | Тип: " + questionType);
+
+				Question question = new Question(id,text, options, correctAnswers, questionType);
 				questions.add(question);
 			}
+
 
 			reader.close();
 		} catch (Exception e) {

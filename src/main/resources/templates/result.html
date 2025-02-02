@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Результат</title>
+    <title>Результат теста</title>
 </head>
 <body>
-<h2>Ваш результат</h2>
-<p>Вы набрали <span th:text="${score}"></span> баллов.</p>
-<a href="/quiz/start">Пройти еще раз</a>
+<h1>Ваш результат</h1>
+
+<p th:text="'Вы набрали ' + ${score} + ' баллов.'"></p>
+
+<!-- Повторить тест -->
+<a href="/">Пройти тест заново</a>
 </body>
 </html>

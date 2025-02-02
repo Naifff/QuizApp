@@ -8,25 +8,35 @@
     <div th:each="question : ${questions}">
         <p th:text="${question.text}"></p>
 
-        <!-- Текстовый ввод -->
-        <div th:if="${question.questionType.toString() == 'TEXT'}">
-            <input type="text" th:name="'answer_' + ${question.id}" />
-        </div>
+        <!-- Используем th:switch для определения типа вопроса -->
+        <div th:switch="${question.questionType}">
 
-        <!-- Вопрос с одним ответом (радиокнопки) -->
-        <div th:if="${question.questionType.toString() == 'SINGLE_CHOICE'}">
-            <div th:each="option : ${question.options}">
-                <input type="radio" th:name="'answer_' + ${question.id}" th:value="${option}" />
-                <label th:text="${option}"></label>
+            <!-- Текстовый ввод -->
+            <div th:case="'TEXT'">
+                <input type="text" th:name="'answer_' + ${question.id}" />
             </div>
-        </div>
 
-        <!-- Вопрос с несколькими ответами (чекбоксы) -->
-        <div th:if="${question.questionType.toString() == 'MULTIPLE_CHOICE'}">
-            <div th:each="option : ${question.options}">
-                <input type="checkbox" th:name="'answer_' + ${question.id}" th:value="${option}" />
-                <label th:text="${option}"></label>
+            <!-- Один правильный ответ (радиокнопки) -->
+            <div th:case="'SINGLE_CHOICE'">
+                <div th:each="option : ${question.options}">
+                    <input type="radio" th:name="'answer_' + ${question.id}" th:value="${option}" />
+                    <label th:text="${option}"></label>
+                </div>
             </div>
+
+            <!-- Несколько правильных ответов (чекбоксы) -->
+            <div th:case="'MULTIPLE_CHOICE'">
+                <div th:each="option : ${question.options}">
+                    <input type="checkbox" th:name="'answer_' + ${question.id} + '[]'" th:value="${option}" />
+                    <label th:text="${option}"></label>
+                </div>
+            </div>
+
+            <!-- Если вопрос не имеет типа -->
+            <div th:case="*">
+                <p>Ошибка: неизвестный тип вопроса</p>
+            </div>
+
         </div>
     </div>
 
