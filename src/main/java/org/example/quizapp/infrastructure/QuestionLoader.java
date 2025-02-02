@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestionLoader {
@@ -24,14 +25,18 @@ public class QuestionLoader {
 
 			String line;
 			while ((line = reader.readLine()) != null) {
-				String[] parts = line.split(";"); // Разделяем по ";"
+				String[] parts = line.split(";", -1); // Учитываем пустые значения
+
 				if (parts.length < 4) continue;
 
-				String text = parts[1]; // Текст вопроса
-				List<String> options = Arrays.asList(parts[2].split(",")); // Варианты ответов
-				List<String> correctAnswers = Arrays.asList(parts[3].split(",")); // Правильные ответы
+				String text = parts[1].trim(); // Убираем пробелы
+				List<String> options = Arrays.stream(parts[2].split(","))
+						.map(String::trim) // Очищаем пробелы
+						.collect(Collectors.toList());
+				List<String> correctAnswers = Arrays.stream(parts[3].split(","))
+						.map(String::trim)
+						.collect(Collectors.toList());
 
-				// Используем конструктор без id
 				Question question = new Question(text, options, correctAnswers, QuestionType.MULTIPLE_CHOICE);
 				questions.add(question);
 			}
