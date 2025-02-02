@@ -27,7 +27,7 @@
             <!-- Несколько правильных ответов (чекбоксы) -->
             <div th:case="'MULTIPLE_CHOICE'">
                 <div th:each="option : ${question.options}">
-                    <input type="checkbox" th:name="'answer_' + ${question.id} + '[]'" th:value="${option}" />
+                    <input type="checkbox" th:name="'answer_' + ${question.id}" th:value="${option}" />
                     <label th:text="${option}"></label>
                 </div>
             </div>
