@@ -2,6 +2,7 @@ package org.example.quizapp.application.impl;
 
 import org.example.quizapp.application.QuizService;
 import org.example.quizapp.domain.Question;
+import org.example.quizapp.domain.QuestionType;
 import org.example.quizapp.infrastructure.QuestionLoader;
 import org.springframework.stereotype.Service;
 
@@ -68,18 +69,43 @@ public class QuizServiceImpl implements QuizService {
 
 			if (userResponse != null) {
 				List<String> userChoices = Arrays.asList(userResponse);
-				if (question.getCorrectAnswers().containsAll(userChoices) && userChoices.containsAll(question.getCorrectAnswers())) {
-					score++;
+				List<String> correctAnswers = question.getCorrectAnswers();
+
+				System.out.println("❓ Вопрос: " + question.getText());
+				System.out.println("✅ Правильные ответы: " + correctAnswers);
+				System.out.println("🔍 Ответы пользователя: " + userChoices);
+
+				// ✅ Определяем, является ли questionType строкой
+
+
+String questionType =  question.getQuestionType();
+				// ✅ Проверяем MULTIPLE_CHOICE
+				if (questionType .equals("MULTIPLE_CHOICE")) {
+					if (userChoices.containsAll(correctAnswers) && correctAnswers.containsAll(userChoices)) {
+						score++;
+						System.out.println("🎯 Верный ответ! +1 балл");
+					} else {
+						System.out.println("❌ Ошибка. Ответы не совпадают.");
+					}
+				}
+				// ✅ Для SINGLE_CHOICE и TEXT просто сравниваем строки
+				else {
+					if (correctAnswers.contains(userChoices.get(0))) {
+						score++;
+						System.out.println("🎯 Верный ответ! +1 балл");
+					} else {
+						System.out.println("❌ Ошибка. Неверный ответ.");
+					}
 				}
 			}
 		}
 
-		System.out.println("Правильные ответы: " + questions.stream().map(Question::getCorrectAnswers).toList());
-		System.out.println("Ответы пользователя: " + userAnswers);
-		System.out.println("Финальный балл: " + score);
-
+		System.out.println("🔢 Итоговый балл: " + score);
 		return score;
 	}
+
+
+
 
 
 }
