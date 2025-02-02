@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Тест</title>
+</head>
+<body>
+<h1>Вопрос <span th:text="${questionIndex != null ? questionIndex + 1 : 1}"></span>
+    из <span th:text="${totalQuestions}"></span>
+</h1>
+
+
+<form action="/quiz/next" method="get">
+    <input type="hidden" name="questionId" th:value="${question.id}" />
+
+    <p th:text="${question.text}"></p>
+
+    <!-- Если вопрос с одним вариантом ответа -->
+    <div th:if="${question.type.name() == 'SINGLE_CHOICE'}">
+        <div th:each="option : ${question.options}">
+            <input type="radio" name="answer" th:value="${option}" />
+            <label th:text="${option}"></label>
+        </div>
+    </div>
+
+    <!-- Если вопрос с несколькими вариантами ответа -->
+    <div th:if="${question.type.name() == 'MULTIPLE_CHOICE'}">
+        <div th:each="option : ${question.options}">
+            <input type="checkbox" name="answers" th:value="${option}" />
+            <label th:text="${option}"></label>
+        </div>
+    </div>
+
+    <!-- Если вопрос требует текстовый ответ -->
+    <div th:if="${question.type.name() == 'TEXT_INPUT'}">
+        <input type="text" name="answer" />
+    </div>
+
+    <button type="submit">Далее</button>
+</form>
+</body>
+</html>
