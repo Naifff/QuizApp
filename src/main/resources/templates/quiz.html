@@ -50,17 +50,17 @@
 
             <div th:switch="${question.questionType}">
                 <div th:case="'TEXT'">
-                    <input type="text" name="answer" />
+                    <input type="text" name="answer" required/>
                 </div>
                 <div th:case="'SINGLE_CHOICE'">
                     <div th:each="option : ${question.options}">
-                        <input type="radio" name="answer" th:value="${option}" />
+                        <input type="radio" name="answer" th:value="${option}" required/>
                         <label th:text="${option}"></label>
                     </div>
                 </div>
                 <div th:case="'MULTIPLE_CHOICE'">
                     <div th:each="option : ${question.options}">
-                        <input type="checkbox" name="answer" th:value="${option}" />
+                        <input type="checkbox" name="answer" th:value="${option}"/>
                         <label th:text="${option}"></label>
                     </div>
                 </div>

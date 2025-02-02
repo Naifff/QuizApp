@@ -59,7 +59,7 @@ public class QuizController {
 
 
 	@PostMapping("/submit")
-	public String submitAnswer(@RequestParam("answer") String answer,
+	public String submitAnswer(@RequestParam(value = "answer", required = false) String answer,
 							   @RequestParam("currentIndex") Integer currentIndex,
 							   @ModelAttribute("userAnswers") Map<String, String[]> userAnswers,
 							   Model model) {
@@ -71,15 +71,21 @@ public class QuizController {
 
 		if (currentIndex <= questions.size()) {
 			String questionId = String.valueOf(questions.get(currentIndex - 1).getId());
-			userAnswers.put(questionId, new String[]{answer});
+
+			// Если ответ отсутствует, сохраняем пустой массив
+			if (answer != null) {
+				userAnswers.put(questionId, new String[]{answer});
+			} else {
+				userAnswers.put(questionId, new String[]{});
+			}
 		}
 
-		// Обновляем индекс корректно
 		model.addAttribute("userAnswers", userAnswers);
 		model.addAttribute("currentIndex", currentIndex + 1);
 
 		return "redirect:/";
 	}
+
 
 
 
