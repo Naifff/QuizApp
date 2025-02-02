@@ -1,7 +1,8 @@
-package org.example.quizapp.application;
+package org.example.quizapp.application.impl;
 
+import org.example.quizapp.application.QuizService;
 import org.example.quizapp.domain.Question;
-import org.example.quizapp.infrastructure.QuestionLoader;
+import org.example.quizapp.infrastructure.QuestionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,31 +10,37 @@ import java.util.Map;
 
 @Service
 public class QuizServiceImpl implements QuizService {
+	private final QuestionRepository questionRepository;
 
-	private final List<Question> questions;
-
-	public QuizServiceImpl(QuestionLoader questionLoader) {
-		this.questions = questionLoader.loadQuestions();
+	public QuizServiceImpl(QuestionRepository questionRepository) {
+		this.questionRepository = questionRepository;
 	}
 
 	@Override
 	public List<Question> getAllQuestions() {
-		return questions;
+		return List.of();
 	}
 
 	@Override
 	public int calculateScore(Map<Long, String> userAnswers, List<Question> questions) {
+		return 0;
+	}
+
+	@Override
+	public List<Question> getQuestions() {
+		return questionRepository.findAll();
+	}
+
+	@Override
+	public int calculateScore(List<String> answers) {
+		List<Question> questions = getQuestions();
 		int score = 0;
-
-		for (Question question : questions) {
-			String correctAnswer = String.join(",", question.getCorrectAnswers()); // Объединяем, если несколько ответов
-			String userAnswer = userAnswers.get(question.getId());
-
-			if (userAnswer != null && userAnswer.equalsIgnoreCase(correctAnswer)) {
+		for (int i = 0; i < answers.size(); i++) {
+			Question question = questions.get(i);
+			if (question.getCorrectAnswers().contains(answers.get(i))) {
 				score++;
 			}
 		}
-
 		return score;
 	}
 }
