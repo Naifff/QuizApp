@@ -12,6 +12,9 @@ public class Question {
 
 	private String text;
 
+	private List<String> correctAnswers; // <-- Должно быть объявлено
+
+
 	@Enumerated(EnumType.STRING)
 	private QuestionType type;
 
@@ -24,11 +27,12 @@ public class Question {
 	}
 
 	// Новый конструктор для всех типов вопросов
-	public Question(String text, QuestionType type, List<String> options, String correctAnswer) {
+	public Question(Long id, String text, List<String> options, List<String> correctAnswers, QuestionType type) {
+		this.id = id;
 		this.text = text;
-		this.type = type;
 		this.options = options;
-		this.correctAnswer = correctAnswer;
+		this.correctAnswers = correctAnswers;
+		this.type = type;
 	}
 
 	public Long getId() {
@@ -50,4 +54,15 @@ public class Question {
 	public String getCorrectAnswer() {
 		return correctAnswer;
 	}
+
+	// Геттер для correctAnswers
+	public List<String> getCorrectAnswers() {
+		return correctAnswers;
+	}
+
+	// Сеттер для correctAnswers
+	public void setCorrectAnswers(List<String> correctAnswers) {
+		this.correctAnswers = correctAnswers;
+	}
+
 }

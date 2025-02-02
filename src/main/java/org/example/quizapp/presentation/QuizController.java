@@ -28,28 +28,52 @@ public class QuizController {
 
 	@GetMapping("/start")
 	public String startQuiz(HttpSession session) {
-		this.questions = quizService.getAllQuestions();  // Загружаем вопросы
-		this.currentQuestionIndex = 0;  // Обнуляем индекс
+		session.invalidate(); // Очистка текущей сессии
+//		session = request.getSession(true); // Создание новой сессии
+
 		session.setAttribute("questionIndex", 0);
-		session.setAttribute("score", 0); // Обнуляем счет
+		session.setAttribute("score", 0);
+
+		questions = quizService.getAllQuestions(); // Получаем все вопросы
+		Map<Long, List<String>> correctAnswers = new HashMap<>();
+		Map<Long, String> questionTypes = new HashMap<>();
+
+		for (Question question : questions) {
+			correctAnswers.put(question.getId(), question.getCorrectAnswers());
+			questionTypes.put(question.getId(), question.getType().name());
+		}
+
+		session.setAttribute("correctAnswers", correctAnswers);
+		session.setAttribute("questionTypes", questionTypes);
+
 		return "redirect:/quiz/next";
 	}
 
 
 
+
+
+
+
 	@GetMapping("/next")
-	public String nextQuestion(Model model) {
-		if (questions == null || currentQuestionIndex >= questions.size()) {
-			return "redirect:/quiz/result"; // Если вопросы кончились, переходим на результат
+	public String nextQuestion(Model model, HttpSession session) {
+		Integer index = (Integer) session.getAttribute("questionIndex");
+		if (index == null) {
+			index = 0;
 		}
 
-		model.addAttribute("question", questions.get(currentQuestionIndex));
-		model.addAttribute("questionIndex", currentQuestionIndex + 1);
+		if (questions == null || index >= questions.size()) {
+			return "redirect:/quiz/result";
+		}
+
+		model.addAttribute("question", questions.get(index));
+		model.addAttribute("questionIndex", index + 1);
 		model.addAttribute("totalQuestions", questions.size());
 
-		currentQuestionIndex++;  // Переходим к следующему вопросу
-		return "quiz";  // Возвращаем шаблон quiz.html
+		session.setAttribute("questionIndex", index + 1);  // Инкремент после показа
+		return "quiz";
 	}
+
 
 
 
@@ -102,6 +126,7 @@ public class QuizController {
 	public String redirectToQuiz() {
 		return "redirect:/quiz/start";
 	}
+
 
 
 

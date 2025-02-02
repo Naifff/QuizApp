@@ -9,7 +9,7 @@
 </h1>
 
 
-<form action="/quiz/next" method="get">
+<form action="/quiz/submit" method="post">
     <input type="hidden" name="questionId" th:value="${question.id}" />
 
     <p th:text="${question.text}"></p>
