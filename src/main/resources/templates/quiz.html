@@ -2,45 +2,76 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: compact;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 50%;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress {
+            height: 10px;
+            background-color: #4caf50;
+            width: 0%;
+        }
+        .question-container {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<form action="/submit" method="post">
-    <p th:text="${question.text}"></p>
-
-    <!-- Используем th:switch для определения типа вопроса -->
-    <div th:switch="${question.questionType}">
-
-        <!-- Текстовый ввод -->
-        <div th:case="'TEXT'">
-            <input type="text" name="answer" />
-        </div>
-
-        <!-- Один правильный ответ (радиокнопки) -->
-        <div th:case="'SINGLE_CHOICE'">
-            <div th:each="option : ${question.options}">
-                <input type="radio" name="answer" th:value="${option}" />
-                <label th:text="${option}"></label>
-            </div>
-        </div>
-
-        <!-- Несколько правильных ответов (чекбоксы) -->
-        <div th:case="'MULTIPLE_CHOICE'">
-            <div th:each="option : ${question.options}">
-                <input type="checkbox" name="answer" th:value="${option}" />
-                <label th:text="${option}"></label>
-            </div>
-        </div>
-
-        <!-- Если вопрос не имеет типа -->
-        <div th:case="*">
-            <p>Ошибка: неизвестный тип вопроса</p>
-        </div>
+<div class="container">
+    <h1 th:text="${quizTitle}"></h1>
+    <div class="progress-bar">
+        <div class="progress" th:style="'width:' + (${currentIndex} * 100 / ${totalQuestions}) + '%' "></div>
     </div>
+    <p th:text="'Вопрос ' + ${currentIndex} + ' из ' + ${totalQuestions}"></p>
 
-    <!-- Скрытое поле для хранения индекса текущего вопроса -->
-    <input type="hidden" name="currentIndex" th:value="${currentIndex}" />
+    <form action="/submit" method="post">
+        <div class="question-container">
+            <p th:text="${question.text}"></p>
 
-    <button type="submit">Отправить</button>
-</form>
+            <div th:switch="${question.questionType}">
+                <div th:case="'TEXT'">
+                    <input type="text" name="answer" />
+                </div>
+                <div th:case="'SINGLE_CHOICE'">
+                    <div th:each="option : ${question.options}">
+                        <input type="radio" name="answer" th:value="${option}" />
+                        <label th:text="${option}"></label>
+                    </div>
+                </div>
+                <div th:case="'MULTIPLE_CHOICE'">
+                    <div th:each="option : ${question.options}">
+                        <input type="checkbox" name="answer" th:value="${option}" />
+                        <label th:text="${option}"></label>
+                    </div>
+                </div>
+                <div th:case="*">
+                    <p>Ошибка: неизвестный тип вопроса</p>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="currentIndex" th:value="${currentIndex}" />
+        <button type="submit">Далее</button>
+    </form>
+</div>
 </body>
 </html>

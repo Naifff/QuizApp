@@ -38,35 +38,50 @@ public class QuizController {
 	public String showQuiz(@ModelAttribute("currentIndex") Integer currentIndex, Model model) {
 		List<Question> questions = quizService.getQuestions();
 
-		if (currentIndex >= questions.size()) {
+		// Если индекс меньше 1 (некорректное значение), исправляем его
+		if (currentIndex == null || currentIndex < 1) {
+			currentIndex = 1;
+		}
+
+		if (currentIndex > questions.size()) {
 			return "redirect:/result";
 		}
 
-		model.addAttribute("question", questions.get(currentIndex));
+		model.addAttribute("question", questions.get(currentIndex - 1)); // Правильный индекс
+		model.addAttribute("totalQuestions", questions.size());
 		model.addAttribute("currentIndex", currentIndex);
+		model.addAttribute("quizTitle", "Java - basic");
+
 		return "quiz";
 	}
 
+
+
+
 	@PostMapping("/submit")
-	public String submitAnswer(@RequestParam Map<String, String> rawAnswers,
+	public String submitAnswer(@RequestParam("answer") String answer,
+							   @RequestParam("currentIndex") Integer currentIndex,
 							   @ModelAttribute("userAnswers") Map<String, String[]> userAnswers,
-							   @ModelAttribute("currentIndex") Integer currentIndex,
 							   Model model) {
 		List<Question> questions = quizService.getQuestions();
 
-		if (currentIndex < questions.size()) {
-			String questionId = String.valueOf(questions.get(currentIndex).getId());
-			userAnswers.put(questionId, new String[]{rawAnswers.get("answer")});
+		if (currentIndex == null || currentIndex < 1) {
+			currentIndex = 1;
 		}
 
-		// Выведем в лог, что сохраняем
-		System.out.println("📌 Сохранён ответ: Вопрос ID " + currentIndex + " -> " + rawAnswers.get("answer"));
+		if (currentIndex <= questions.size()) {
+			String questionId = String.valueOf(questions.get(currentIndex - 1).getId());
+			userAnswers.put(questionId, new String[]{answer});
+		}
 
+		// Обновляем индекс корректно
 		model.addAttribute("userAnswers", userAnswers);
 		model.addAttribute("currentIndex", currentIndex + 1);
 
 		return "redirect:/";
 	}
+
+
 
 	@GetMapping("/result")
 	public String showResults(@ModelAttribute("userAnswers") Map<String, String[]> userAnswers, Model model) {
