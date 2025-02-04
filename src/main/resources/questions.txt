@@ -1,103 +1,161 @@
-1;Что такое JVM?;Компилятор Java, Java Virtual Machine - виртуальная машина Java, Среда разработки Java, Фреймворк Java, Java Development Kit;Java Virtual Machine - виртуальная машина Java;SINGLE_CHOICE
-2;Какой модификатор доступа является самым строгим?;public, private, protected, default, static;private;SINGLE_CHOICE
-3;Что такое конструктор в Java?;Метод для удаления объекта, Специальный метод для инициализации объекта, Метод для компиляции кода, Метод для наследования, Метод для вывода данных;Специальный метод для инициализации объекта;SINGLE_CHOICE
-4;Что такое перегрузка методов?;Ошибка в коде, Методы с одинаковым названием но разными параметрами, Повторное использование метода, Переопределение метода, Копирование метода;Методы с одинаковым названием но разными параметрами;SINGLE_CHOICE
-5;Какой класс является суперклассом для всех классов в Java?;String, Object, Main, Super, Class;Object;SINGLE_CHOICE
-6;Что такое интерфейс в Java?;Абстрактный класс, Контракт определяющий поведение, Реализация класса, Конкретный класс, Вложенный класс;Контракт определяющий поведение;SINGLE_CHOICE
-7;Какой цикл выполнится хотя бы один раз?;while, for, do-while, foreach, нет правильного ответа;do-while;SINGLE_CHOICE
-8;Что такое статический метод?;Метод экземпляра класса, Метод принадлежащий классу а не объекту, Приватный метод, Публичный метод, Защищенный метод;Метод принадлежащий классу а не объекту;SINGLE_CHOICE
-9;Как объявить константу в Java?;static final, const, final static, readonly, immutable;static final;SINGLE_CHOICE
-10;Что такое наследование в Java?;Создание нового класса, Механизм создания нового класса на основе существующего, Копирование класса, Удаление класса, Переименование класса;Механизм создания нового класса на основе существующего;SINGLE_CHOICE
-11;Какой оператор используется для создания объекта?;new, create, make, init, instance;new;SINGLE_CHOICE
-12;Что такое полиморфизм?;Наследование классов, Множественное наследование, Возможность объекта принимать разные формы, Инкапсуляция данных, Абстракция данных;Возможность объекта принимать разные формы;SINGLE_CHOICE
-13;Какой метод вызывается при создании объекта?;finalize(), main(), constructor(), new(), init();constructor();SINGLE_CHOICE
-14;Что такое абстрактный класс?;Финальный класс, Класс который нельзя инстанцировать, Статический класс, Приватный класс, Публичный класс;Класс который нельзя инстанцировать;SINGLE_CHOICE
-15;Какой модификатор нельзя использовать для класса?;public, private, protected, default, abstract;private;SINGLE_CHOICE
-16;Что такое package в Java?;Архив, Библиотека классов, Механизм организации классов и интерфейсов, Компилятор, Фреймворк;Механизм организации классов и интерфейсов;SINGLE_CHOICE
-17;Какой тип данных не является примитивным?;int, boolean, char, String, byte;String;SINGLE_CHOICE
-18;Что такое перехват исключений?;Создание ошибок, Механизм обработки ошибок, Игнорирование ошибок, Компиляция кода, Отладка кода;Механизм обработки ошибок;SINGLE_CHOICE
-19;Какое ключевое слово используется для наследования?;inherit, extends, implements, super, this;extends;SINGLE_CHOICE
-20;Что такое инкапсуляция?;Наследование, Полиморфизм, Сокрытие реализации, Абстракция, Интерфейс;Сокрытие реализации;SINGLE_CHOICE
-21;Какой метод определен в классе Object?;main(), run(), toString(), print(), write();toString();SINGLE_CHOICE
-22;Что такое garbage collection?;Очистка памяти, Сбор мусора, Автоматическое управление памятью, Все вышеперечисленное, Ничего из вышеперечисленного;Автоматическое управление памятью;SINGLE_CHOICE
-23;Какой оператор используется для сравнения объектов?;==, equals(), compare(), ===, is;equals();SINGLE_CHOICE
-24;Что такое final класс?;Абстрактный класс, Класс который нельзя наследовать, Статический класс, Приватный класс, Публичный класс;Класс который нельзя наследовать;SINGLE_CHOICE
-25;Какой метод используется для чтения данных с консоли?;System.in.read(), Scanner.nextLine(), BufferedReader.readLine(), Все вышеперечисленное, Ничего из вышеперечисленного;Все вышеперечисленное;SINGLE_CHOICE
-26;Что такое статическая переменная?;Локальная переменная, Переменная класса, Константа, Глобальная переменная, Временная переменная;Переменная класса;SINGLE_CHOICE
-27;Какой интерфейс используется для сортировки объектов?;Sortable, Comparable, Comparator, Sort, Оба B и C;Оба B и C;SINGLE_CHOICE
-28;Что такое enum в Java?;Числовой тип, Перечисление, Класс, Интерфейс, Метод;Перечисление;SINGLE_CHOICE
-29;Какой класс используется для работы с потоками?;Thread, Process, Task, Job, Run;Thread;SINGLE_CHOICE
-30;Что такое synchronized метод?;Статический метод, Потокобезопасный метод, Приватный метод, Публичный метод, Защищенный метод;Потокобезопасный метод;SINGLE_CHOICE
-31;Какой класс является родительским для всех исключений?;Exception, Error, Throwable, RuntimeException, IOException;Throwable;SINGLE_CHOICE
-32;Что такое generics?;Обобщенные типы, Шаблоны, Параметризованные типы, Все вышеперечисленное, Ничего из вышеперечисленного;Все вышеперечисленное;SINGLE_CHOICE
-33;Какой интерфейс используется для создания неизменяемых коллекций?;Immutable, Unmodifiable, Collections, List, Set;Unmodifiable;SINGLE_CHOICE
-34;Что такое autoboxing?;Автоматическая упаковка примитивов в объекты, Автоматическая распаковка объектов в примитивы, Оба варианта верны, Ничего из вышеперечисленного, Преобразование типов;Оба варианта верны;SINGLE_CHOICE
-35;Какой модификатор используется для запрета переопределения метода?;static, final, private, protected, public;final;SINGLE_CHOICE
-36;Что такое volatile переменная?;Константа, Переменная видимая всем потокам, Статическая переменная, Локальная переменная, Глобальная переменная;Переменная видимая всем потокам;SINGLE_CHOICE
-37;Какой класс используется для работы с датой и временем в Java 8+?;Date, Calendar, LocalDateTime, Time, DateTime;LocalDateTime;SINGLE_CHOICE
-38;Что такое лямбда-выражение?;Анонимный метод, Функциональный интерфейс, Анонимная функция, Все вышеперечисленное, Ничего из вышеперечисленного;Анонимная функция;SINGLE_CHOICE
-39;Какой интерфейс используется для создания потока?;Runnable, Callable, Thread, Process, Task;Runnable;SINGLE_CHOICE
-40;Что такое Stream API?;Потоки ввода-вывода, Функциональный способ обработки данных, Работа с файлами, Многопоточность, Сериализация;Функциональный способ обработки данных;SINGLE_CHOICE
-41;Какой класс используется для работы с файлами?;File, FileReader, FileWriter, Все вышеперечисленное, Ничего из вышеперечисленного;Все вышеперечисленное;SINGLE_CHOICE
-42;Что такое сериализация?;Преобразование объекта в поток байтов, Преобразование байтов в объект, Копирование объекта, Клонирование объекта, Создание объекта;Преобразование объекта в поток байтов;SINGLE_CHOICE
-43;Какой интерфейс используется для создания неизменяемого списка?;List, ArrayList, LinkedList, ImmutableList, UnmodifiableList;UnmodifiableList;SINGLE_CHOICE
-44;Что такое reflection?;Механизм исследования классов во время выполнения, Отражение объектов, Копирование объектов, Создание объектов, Удаление объектов;Механизм исследования классов во время выполнения;SINGLE_CHOICE
-45;Какой класс используется для работы с регулярными выражениями?;Regex, Pattern, RegExp, Regular, Expression;Pattern;SINGLE_CHOICE
-46;Что такое функциональный интерфейс?;Интерфейс с одним абстрактным методом, Интерфейс с несколькими методами, Маркерный интерфейс, Обычный интерфейс, Абстрактный интерфейс;Интерфейс с одним абстрактным методом;SINGLE_CHOICE
-47;Какой метод вызывается перед уничтожением объекта?;destroy(), finalize(), delete(), remove(), clear();finalize();SINGLE_CHOICE
-48;Что такое аннотации?;Комментарии, Метаданные, Документация, Все вышеперечисленное, Ничего из вышеперечисленного;Метаданные;SINGLE_CHOICE
-49;Какой класс используется для создания неизменяемой строки?;String, StringBuilder, StringBuffer, CharSequence, StringWriter;String;SINGLE_CHOICE
-50;Что такое методы по умолчанию в интерфейсах?;Абстрактные методы, Реализация методов в интерфейсе, Статические методы, Приватные методы, Публичные методы;Реализация методов в интерфейсе;SINGLE_CHOICE
-51;Какие модификаторы доступа существуют в Java?;public, private, protected, default, static;public, private, protected, default;MULTIPLE_CHOICE
-52;Какие примитивные типы данных есть в Java?;int, String, boolean, char, byte;int, boolean, char, byte;MULTIPLE_CHOICE
-53;Какие способы создания объектов существуют в Java?;Оператор new, Клонирование, Сериализация, Рефлексия, Фабричный метод;Оператор new, Клонирование, Сериализация, Рефлексия;MULTIPLE_CHOICE
-54;Какие виды циклов есть в Java?;while, for, do-while, foreach, until;while, for, do-while, foreach;MULTIPLE_CHOICE
-55;Какие типы исключений существуют в Java?;Checked, Unchecked, Error, Warning, Debug;Checked, Unchecked, Error;MULTIPLE_CHOICE
-56;Какие коллекции реализуют интерфейс List?;ArrayList, LinkedList, Vector, Stack, TreeList;ArrayList, LinkedList, Vector, Stack;MULTIPLE_CHOICE
-57;Какие методы определены в интерфейсе Collection?;add(), remove(), size(), contains(), get();add(), remove(), size(), contains();MULTIPLE_CHOICE
-58;Какие виды потоков ввода-вывода есть в Java?;Байтовые, Символьные, Объектные, Буферизованные, Сетевые;Байтовые, Символьные, Объектные, Буферизованные;MULTIPLE_CHOICE
-59;Какие ключевые слова используются для обработки исключений?;try, catch, finally, throw, throws;try, catch, finally, throw, throws;MULTIPLE_CHOICE
-60;Какие интерфейсы входят в Java Collection Framework?;List, Set, Map, Queue, Stack;List, Set, Map, Queue;MULTIPLE_CHOICE
-61;Какие методы можно переопределить из класса Object?;equals(), hashCode(), toString(), clone(), finalize();equals(), hashCode(), toString(), clone();MULTIPLE_CHOICE
-62;Какие виды внутренних классов существуют в Java?;Статические, Нестатические, Локальные, Анонимные, Внешние;Статические, Нестатические, Локальные, Анонимные;MULTIPLE_CHOICE
-63;Какие операторы используются для ветвления в Java?;if, switch, case, break, continue;if, switch, case;MULTIPLE_CHOICE
-64;Какие виды комментариев есть в Java?;Однострочные, Многострочные, Документационные, Системные, Пользовательские;Однострочные, Многострочные, Документационные;MULTIPLE_CHOICE
-65;Какие интерфейсы используются для многопоточности?;Runnable, Callable, Thread, Process, Task;Runnable, Callable;MULTIPLE_CHOICE
-66;Какие коллекции являются потокобезопасными?;Vector, Hashtable, ConcurrentHashMap, Stack, ArrayList;Vector, Hashtable, ConcurrentHashMap, Stack;MULTIPLE_CHOICE
-67;Какие методы есть в классе String?;length(), substring(), indexOf(), charAt(), append();length(), substring(), indexOf(), charAt();MULTIPLE_CHOICE
-68;Какие виды наследования поддерживает Java?;Одиночное, Множественное через интерфейсы, Иерархическое, Многоуровневое, Гибридное;Одиночное, Множественное через интерфейсы, Иерархическое, Многоуровневое;MULTIPLE_CHOICE
-69;Какие функциональные интерфейсы есть в Java 8+?;Predicate, Function, Consumer, Supplier, Operator;Predicate, Function, Consumer, Supplier;MULTIPLE_CHOICE
-70;Какие методы можно использовать для работы с файлами?;read(), write(), close(), open(), delete();read(), write(), close(), delete();MULTIPLE_CHOICE
-71;Какие виды сериализации существуют в Java?;Стандартная, Внешняя, Пользовательская, XML, JSON;Стандартная, Внешняя, XML, JSON;MULTIPLE_CHOICE
-72;Какие коллекции реализуют интерфейс Set?;HashSet, TreeSet, LinkedHashSet, SortedSet, ArrayList;HashSet, TreeSet, LinkedHashSet;MULTIPLE_CHOICE
-73;Какие виды памяти есть в JVM?;Heap, Stack, Method Area, PC Register, Native Method Stack;Heap, Stack, Method Area, PC Register, Native Method Stack;MULTIPLE_CHOICE
-74;Какие методы есть в интерфейсе Map?;put(), get(), remove(), containsKey(), size();put(), get(), remove(), containsKey(), size();MULTIPLE_CHOICE
-75;Какие виды классов загрузчиков существуют в Java?;Bootstrap, Extension, Application, System, Custom;Bootstrap, Extension, Application;MULTIPLE_CHOICE
-76;Какие аннотации входят в стандартную библиотеку Java?;Override, Deprecated, SuppressWarnings, FunctionalInterface, SafeVarargs;Override, Deprecated, SuppressWarnings, FunctionalInterface, SafeVarargs;MULTIPLE_CHOICE
-77;Какие операторы используются для работы с битами?;AND, OR, XOR, NOT, SHIFT;AND, OR, XOR, NOT, SHIFT;MULTIPLE_CHOICE
-78;Какие методы есть в классе Arrays?;sort(), binarySearch(), copyOf(), fill(), asList();sort(), binarySearch(), copyOf(), fill(), asList();MULTIPLE_CHOICE
-79;Какие виды ссылок существуют в Java?;Strong, Weak, Soft, Phantom, Virtual;Strong, Weak, Soft, Phantom;MULTIPLE_CHOICE
-80;Какие методы есть в классе Collections?;sort(), shuffle(), reverse(), min(), max();sort(), shuffle(), reverse(), min(), max();MULTIPLE_CHOICE
-81;Какие виды пулов потоков есть в Java?;Fixed, Cached, Scheduled, Single, Custom;Fixed, Cached, Scheduled, Single;MULTIPLE_CHOICE
-82;Какие методы есть в классе Math?;abs(), sqrt(), pow(), random(), round();abs(), sqrt(), pow(), random(), round();MULTIPLE_CHOICE
-83;Какие виды сортировки поддерживаются в Java?;Quick, Merge, Bubble, Insertion, Selection;Quick, Merge, Insertion;MULTIPLE_CHOICE
-84;Какие интерфейсы используются для работы со строками?;CharSequence, Comparable, Serializable, Cloneable, Appendable;CharSequence, Comparable, Serializable;MULTIPLE_CHOICE
-85;Какие виды кодировок поддерживает Java?;UTF-8, UTF-16, ASCII, ISO-8859-1, Windows-1251;UTF-8, UTF-16, ASCII, ISO-8859-1;MULTIPLE_CHOICE
-86;Какие методы есть в классе System?;gc(), exit(), currentTimeMillis(), getProperties(), arraycopy();gc(), exit(), currentTimeMillis(), getProperties(), arraycopy();MULTIPLE_CHOICE
-87;Какие виды очередей есть в Java?;PriorityQueue, ArrayDeque, LinkedList, BlockingQueue, ConcurrentLinkedQueue;PriorityQueue, ArrayDeque, BlockingQueue, ConcurrentLinkedQueue;MULTIPLE_CHOICE
-88;Какие методы есть в интерфейсе Comparable?;compareTo(), equals(), hashCode(), compare(), sort();compareTo();MULTIPLE_CHOICE
-89;Какие виды синхронизации существуют в Java?;Synchronized методы, Synchronized блоки, Volatile переменные, Lock интерфейс, Atomic классы;Synchronized методы, Synchronized блоки, Volatile переменные, Lock интерфейс;MULTIPLE_CHOICE
-90;Какие методы есть в классе Thread?;start(), run(), sleep(), join(), interrupt();start(), run(), sleep(), join(), interrupt();MULTIPLE_CHOICE
-91;Какие виды паттернов поддерживает Java?;Singleton, Factory, Builder, Observer, Decorator;Singleton, Factory, Builder, Observer, Decorator;MULTIPLE_CHOICE
-92;Какие методы есть в классе Object?;equals(), hashCode(), toString(), clone(), getClass();equals(), hashCode(), toString(), clone(), getClass();MULTIPLE_CHOICE
-93;Какие виды операторов есть в Java?;Арифметические, Логические, Побитовые, Сравнения, Присваивания;Арифметические, Логические, Побитовые, Сравнения, Присваивания;MULTIPLE_CHOICE
-94;Какие методы есть в интерфейсе List?;add(), get(), remove(), size(), contains();add(), get(), remove(), size(), contains();MULTIPLE_CHOICE
-95;Какие виды модификаторов есть в Java?;Доступа, Static, Final, Abstract, Synchronized;Доступа, Static, Final, Abstract, Synchronized;MULTIPLE_CHOICE
-96;Какие методы есть в классе Calendar?;getInstance(), getTime(), setTime(), add(), clear();getInstance(), getTime(), setTime(), add(), clear();MULTIPLE_CHOICE
-97;Какие виды констант существуют в Java?;Static Final, Enum, Interface Constants, Public Final, Private Final;Static Final, Enum, Interface Constants;MULTIPLE_CHOICE
-98;Какие методы есть в классе StringBuilder?;append(), insert(), delete(), reverse(), toString();append(), insert(), delete(), reverse(), toString();MULTIPLE_CHOICE
-99;Какие виды потоков данных есть в Java?;InputStream, OutputStream, Reader, Writer, Stream;InputStream, OutputStream, Reader, Writer;MULTIPLE_CHOICE
-100;Какие методы есть в интерфейсе Serializable?;writeObject(), readObject(), writeExternal(), readExternal();writeObject(), readObject();MULTIPLE_CHOICE
+0;Как Java CodeConvention рекомендует называть классы и методы?;Классы начинаются с заглавной буквы, методы со строчной#Классы начинаются с заглавной буквы, методы начинаются с заглавной#Классы пишутся строчными буквами, методы целиком заглавными#Классы начинаются со строчной буквы, методы с заглавной#Классы пишутся заглавными буквами, методы целиком строчными;Классы начинаются с заглавной буквы, методы со строчной;SINGLE_CHOICE
+0;Как называется код между фигурными скобками?;секция#блок#тело#функция;блок;SINGLE_CHOICE
+0;К какому принципу ООП относятся понятия overloading (перегрузка) и overriding (переопределение)?;Реализация#Полиморфизм#Абстракция#Инкапсуляция;Полиморфизм;SINGLE_CHOICE
+0;Может ли в одном классе объявлено больше одного метода с именем main:;Нет#Да;Да;SINGLE_CHOICE
+0;Экземпляр класса String напрямую нельзя создать из:;Экземпляра класса StringBuilder#Экземпляра класса StringBuffer#Массива строк#Массива символов#Строкового литерала;Массива строк;SINGLE_CHOICE
+0;У вас в проекте несколько классов. Можно ли в каждом из них объявить свой public static void main(String[] args)?;Да#Нет;Да;SINGLE_CHOICE
+0;Для массивов в Java верно:;Изменяемый размер, содержит элементы разных типов#Фиксированный размер, содержит элементы одного типа#Фиксированный размер, содержит элементы разных типов#Изменяемый размер, содержит элементы одного типа;Фиксированный размер, содержит элементы разных типов;SINGLE_CHOICE
+0;Где правильно присвоено новое значение к многомерному массиву?;a[0, 0] = 1#a[0][0] = 1#a[0 0] = 1#a(0)(0) = 1#a{0}{0} = 1;a[0][0] = 1;SINGLE_CHOICE
+0;С каким расширением хранится исходный код классов, а с каким скомпилированный?;Исходный код в .javac, скомпилированный в .class#Исходный код в .java, скомпилированный в .class#Исходный код в .class, скомпилированный в .java#Исходный код в .java, скомпилированный в . javac#Исходный код в .javac, скомпилированный в . java;Исходный код в .java, скомпилированный в .class;SINGLE_CHOICE
+0;Что является условием для выполнения итерации в цикле?;Логическое выражение, результат которого значения не имеет#Логическое выражение, результат которого - истина#Логическое выражение, результат которого - ложь#Арифметическое выражение, результат которого - любое неотрицательное число#Арифметическое выражение, результат которого - 0;Логическое выражение, результат которого - истина;SINGLE_CHOICE
+0;Возможно ли в Java использование выражений вида: а < x < b?;Нет#Да;Нет;SINGLE_CHOICE
+0;Где правильно создан массив?;int[] a = new int[] {1, 2, 3, 4, 5}#int a[] = 1, 2, 3, 4, 5#int[] a = int[] {1, 2, 3, 4, 5}#int a = new int[] {1, 2, 3, 4, 5}#int[] a = new int {1, 2, 3, 4, 5};int[] a = new int[] {1, 2, 3, 4, 5};SINGLE_CHOICE
+0;Каково значение arr[1].length в следующем массиве? int[][] arr = { {1, 2, 3, 4, 5}, { 6, 7, 8, 9, 10} };5#10#1#2;5;SINGLE_CHOICE
+0;Как указать индекс последнего элемента массива?;array.length#array.size-1#array.length-1#array.size;array.length-1;SINGLE_CHOICE
+0;--х обозначает:;постфиксный инкремент#префиксный декремент#постфиксный декремент#префиксный инкремент;префиксный декремент;SINGLE_CHOICE
+0;Тернарным логическим оператором является:;!#? :#&&#^#| |;? :;SINGLE_CHOICE
+0;Какие типы данных не могут быть в качестве условия switch-case:;Строки#Символы#Целые числа#Дробные числа;Дробные числа;SINGLE_CHOICE
+0;Вызвать статический метод или обратиться к статическому полю класса можно:;только из любого класса в том же пакет#только создав экземпляр класса, в котором они реализованы#не создавая экземпляр класса, в котором они реализованы#только из методов этого класса#только из подклассов;не создавая экземпляр класса, в котором они реализованы;SINGLE_CHOICE
+0;Ключевое слово else после конструкции с if:;Обязательно присутствует#Может отсутствовать;Может отсутствовать;SINGLE_CHOICE
+0;Инициализированная переменная в Java имеет:;Тип, имя, первоначальное значение#Имя#Тип, первоначальное значение#Имя, первоначальное значение#Тип, имя;Тип, имя, первоначальное значение;SINGLE_CHOICE
+0;Что из нижеперечисленного является примитивным типом данных?;Integer#int#String#int[]#Boolean#char;int#char;MULTIPLE_CHOICE
+0;Укажите пакет, в котором классы для работы со строками String, StringBuffer, StringBuilder;java.lang, не требует обязательного импорта#java.lang, требует обязательного импорта#java. text, требует обязательного импорта#java.util, не требует обязательного импорта#java.util, требует обязательного импорта;java.lang, не требует обязательного импорта;SINGLE_CHOICE
+0;По типу результата все методы можно разделить на:;С возвращаемым значением и без#Целочисленные и дробные#С аргументами и без#Статические и нестатические#Константы и переменные;С возвращаемым значением и без;SINGLE_CHOICE
+0;Использование геттеров и сеттеров относится к принципу:;Наследование#Полиморфизм#Инкапсуляция;Инкапсуляция;SINGLE_CHOICE
+0;Укажите правильную форму метода main:;public static void main(String[] args)#public static void Main(String] args)#public static void main()#public int main(String[] args)#public void main (String args[]);public static void main(String[] args);SINGLE_CHOICE
+0;Если в сигнатуре метода указано void, то ключевое слово return в теле метода:;Не обязательно, может быть указано с любым значением#Обязательно как минимум один раз с любым значением#Обязательно, но без какого-либо значения#Обязательно как минимум один раз без какого-либо значения#Не обязательно, но может быть указано в качестве прерывания работы метода;Не обязательно, но может быть указано в качестве прерывания работы метода;SINGLE_CHOICE
+0;На какие группы делятся типы данных в языке Java?;Переменные, примитивные#Примитивные, ссылочные (объектные)#Ссылочные (объектные)#Примитивные#Переменные, постоянные;Примитивные, ссылочные (объектные);SINGLE_CHOICE
+1;Какие из перечисленных команд Git используются для временного сохранения изменений перед переключением веток или решением конфликтов?;fatch#stash#cherry pick#revert;stash;SINGLE_CHOICE
+1;Какова основная цель блока finally при обработке исключений?;Выполнение кода, независимо от того, выбросилось ли исключение в блоке try или нет#Объявление исключения#Перехват исключения#Создание собственного исключения;Выполнение кода, независимо от того, выбросилось ли исключение в блоке try или нет;SINGLE_CHOICE
+1;Какие члены класса наследует дочерний класс от родительского?;protected поля#public конструктор#static методы#public final методы;protected поля#public конструктор#static методы;MULTIPLE_CHOICE
+1;Что представляет собой Apache Tomcat?;Веб-браузер, разработанный Apache Software Foundation.#Контейнер сервлетов, используемый для выполнения Java-сервлетов и JSP-страниц.#Система управления базами данных, спроектированная для работы с большим объемом данных.#Распределенная система обработки сообщений для взаимодействия между приложениями.;Контейнер сервлетов, используемый для выполнения Java-сервлетов и JSP-страниц.;SINGLE_CHOICE
+1;Выберите неидемпотентные HTTP методы;GET#POST#HEAD#PATCH;POST#PATCH;MULTIPLE_CHOICE
+1;Какой  структурный паттерн проектирования позволяет динамически добавлять объектам новую функциональность, оборачивая их в полезные «обёртки» расширяя интерфейс;Proxy#Adapter#Decorator#Prototype;Decorator;SINGLE_CHOICE
+1;Отметьте сущестующие загрузчики классов в Java?;JDKClassLoader#PlatformClassLoader#BootstrapClassLoader#AppClassLoader;PlatformClassLoader#BootstrapClassLoader#AppClassLoader;MULTIPLE_CHOICE
+1;Какую команду Git следует использовать для отмены локальных изменений, сбрасывая рабочую директорию и индекс до определенного состояния?;undo#revert#rollback#reset;reset;SINGLE_CHOICE
+1;Какая временная сложность для ArrayList и LinkedList соответственно при выполнении операции удаления самого первого элемента?;O(1) и 0(1)#O(n) и O(n)#O(n) и O(1)#O(1) и O(n);O(n) и O(1);SINGLE_CHOICE
+1;С каким начальным размером создается структура данных HashMap при вызове конструктора по умолчанию?;10#4#16#124;16;SINGLE_CHOICE
+1;Перечислите все варианты интерфейсов, которые должен имплементировать класс, чтобы получить свойство иметь возможность быть сериализованным.;Clonable#Serializable#Externalizable#Throwable;Serializable#Externalizable;MULTIPLE_CHOICE
+1;Какие правила важны при работе с потоками ввода-вывода?;Использовать только try-with-resources#Закрывать поток после использования#Обрабатывать исключения ввода-вывода#Все выше перечисленное;Закрывать поток после использования#Обрабатывать исключения ввода-вывода;MULTIPLE_CHOICE
+1;Какие бывают состояния потока;Сlosed#Runnable#Runed#Terminated;Runnable#Terminated;MULTIPLE_CHOICE
+1;Что может быть определено внутри интерфейсов?;поля с модификаторами static и final (константы)#абстрактные методы#приватные методы#конструктор;поля с модификаторами static и final (константы)#абстрактные методы#приватные методы;MULTIPLE_CHOICE
+1;Какой пакет в Java предоставляет высокоуровневые конструкции для работы с многопоточностью?;java.lang#java.util.concurrent#java.threading#java.sync;java.util.concurrent;SINGLE_CHOICE
+1;Какие есть фабричные методы у утилитного класса Executors для получения пула потоков?;newForkJoinPool()#newFixedThreadPool()#newFutureThreadPool()#newScheduledThreadPool();newFixedThreadPool()#newScheduledThreadPool();MULTIPLE_CHOICE
+1;Какая временная сложность алгоритма Бинарный поиск?;O(n^2)#O(log n)#O(2n)#O(1);O(log n);SINGLE_CHOICE
+1;Выберите этапы жизненного цикла сервлета;init#request#doGet#service;init#service;MULTIPLE_CHOICE
+1;Какие из перечисленных ключевых слов используются для обработки исключений в Java?;try#catch#finalize#throw;try#catch;MULTIPLE_CHOICE
+1;Какой интерфейс предоставляет механизм для управления блокировкой в многопоточной программе?;Lock#Synchronize#Mutex#Semaphore;Lock;SINGLE_CHOICE
+1;Какие фазы жизненного цикла сборки проекта из приведенных действительно существуют при использовании Maven?;install#compile#verify#check;install#compile#verify;MULTIPLE_CHOICE
+1;Какую команду Git следует использовать для отмены коммита, создания нового коммита, который отменяет изменения предыдущего?;reset#rebase#revert#rollback;revert;SINGLE_CHOICE
+1;В каком паттерне проектирования используются вложенные статические классы?;Singleton#Factory Method#Abstract Factory#Builder;Builder;SINGLE_CHOICE
+1;Какой из принципов SOLID утверждает, что клиенты не должны зависеть от конкретных классов, а от абстракций?;Single Responsibility Principle (SRP)#Open/Closed Principle (OCP)#Liskov Substitution Principle (LSP)#Dependency Inversion Principle (DIP);Dependency Inversion Principle (DIP);SINGLE_CHOICE
+1;Какая из следующих моделей описывает сетевую архитектуру, разбивая ее на семь уровней?;TCP/IP#UDP#HTTP#OSI;OSI;SINGLE_CHOICE
+1;Какой компонент обрабатывает запросы от клиентов и возвращает ответы в архитектуре Java EE?;JSP#Servlets#JDBC#EJB;JDBC;SINGLE_CHOICE
+1;Какие модификаторы или ключевые слова нельзя использовать вместе с определением переменной экземпляра(поля)  в классе?;transient#synchronized#volatile#abstract;synchronized#abstract;MULTIPLE_CHOICE
+1;Что относится к свойствам enum;могут расширять другие классы#могут имплементировать интерфейсы#от enum могут неследоваться другие классы#в них можно определять конструкторы;могут имплементировать интерфейсы#в них можно определять конструкторы;MULTIPLE_CHOICE
+1;Какие из перечисленных являются промежуточными операциями при использовании Stream API?;filter()#findFirst()#map()#reduce();filter()#map();MULTIPLE_CHOICE
+1;Какие из приведенных методов в Stream API принимают в качестве параметра функциональный интерфейс типа Consumer?;peek()#forEach()#filter()#flatMap();peek()#forEach();MULTIPLE_CHOICE
+
+1;Что такое JVM?;Компилятор Java# Java Virtual Machine - виртуальная машина Java# Среда разработки Java# Фреймворк Java# Java Development Kit;Java Virtual Machine - виртуальная машина Java;SINGLE_CHOICE
+2;Какой модификатор доступа является самым строгим?;public# private# protected# default# static;private;SINGLE_CHOICE
+3;Что такое конструктор в Java?;Метод для удаления объекта# Специальный метод для инициализации объекта# Метод для компиляции кода# Метод для наследования# Метод для вывода данных;Специальный метод для инициализации объекта;SINGLE_CHOICE
+4;Что такое перегрузка методов?;Ошибка в коде# Методы с одинаковым названием но разными параметрами# Повторное использование метода# Переопределение метода# Копирование метода;Методы с одинаковым названием но разными параметрами;SINGLE_CHOICE
+5;Какой класс является суперклассом для всех классов в Java?;String# Object# Main# Super# Class;Object;SINGLE_CHOICE
+6;Что такое интерфейс в Java?;Абстрактный класс# Контракт определяющий поведение# Реализация класса# Конкретный класс# Вложенный класс;Контракт определяющий поведение;SINGLE_CHOICE
+7;Какой цикл выполнится хотя бы один раз?;while# for# do-while# foreach# нет правильного ответа;do-while;SINGLE_CHOICE
+8;Что такое статический метод?;Метод экземпляра класса# Метод принадлежащий классу а не объекту# Приватный метод# Публичный метод# Защищенный метод;Метод принадлежащий классу а не объекту;SINGLE_CHOICE
+9;Как объявить константу в Java?;static final# const# final static# readonly# immutable;static final;SINGLE_CHOICE
+10;Что такое наследование в Java?;Создание нового класса# Механизм создания нового класса на основе существующего# Копирование класса# Удаление класса# Переименование класса;Механизм создания нового класса на основе существующего;SINGLE_CHOICE
+11;Какой оператор используется для создания объекта?;new# create# make# init# instance;new;SINGLE_CHOICE
+12;Что такое полиморфизм?;Наследование классов# Множественное наследование# Возможность объекта принимать разные формы# Инкапсуляция данных# Абстракция данных;Возможность объекта принимать разные формы;SINGLE_CHOICE
+13;Какой метод вызывается при создании объекта?;finalize()# main()# constructor()# new()# init();constructor();SINGLE_CHOICE
+14;Что такое абстрактный класс?;Финальный класс# Класс который нельзя инстанцировать# Статический класс# Приватный класс# Публичный класс;Класс который нельзя инстанцировать;SINGLE_CHOICE
+15;Какой модификатор нельзя использовать для класса?;public# private# protected# default# abstract;private;SINGLE_CHOICE
+16;Что такое package в Java?;Архив# Библиотека классов# Механизм организации классов и интерфейсов# Компилятор# Фреймворк;Механизм организации классов и интерфейсов;SINGLE_CHOICE
+17;Какой тип данных не является примитивным?;int# boolean# char# String# byte;String;SINGLE_CHOICE
+18;Что такое перехват исключений?;Создание ошибок# Механизм обработки ошибок# Игнорирование ошибок# Компиляция кода# Отладка кода;Механизм обработки ошибок;SINGLE_CHOICE
+19;Какое ключевое слово используется для наследования?;inherit# extends# implements# super# this;extends;SINGLE_CHOICE
+20;Что такое инкапсуляция?;Наследование# Полиморфизм# Сокрытие реализации# Абстракция# Интерфейс;Сокрытие реализации;SINGLE_CHOICE
+21;Какой метод определен в классе Object?;main()# run()# toString()# print()# write();toString();SINGLE_CHOICE
+22;Что такое garbage collection?;Очистка памяти# Сбор мусора# Автоматическое управление памятью# Все вышеперечисленное# Ничего из вышеперечисленного;Автоматическое управление памятью;SINGLE_CHOICE
+23;Какой оператор используется для сравнения объектов?;==# equals()# compare()# ===# is;equals();SINGLE_CHOICE
+24;Что такое final класс?;Абстрактный класс# Класс который нельзя наследовать# Статический класс# Приватный класс# Публичный класс;Класс который нельзя наследовать;SINGLE_CHOICE
+25;Какой метод используется для чтения данных с консоли?;System.in.read()# Scanner.nextLine()# BufferedReader.readLine()# Все вышеперечисленное# Ничего из вышеперечисленного;Все вышеперечисленное;SINGLE_CHOICE
+26;Что такое статическая переменная?;Локальная переменная# Переменная класса# Константа# Глобальная переменная# Временная переменная;Переменная класса;SINGLE_CHOICE
+27;Какой интерфейс используется для сортировки объектов?;Sortable# Comparable# Comparator# Sort# Оба B и C;Оба B и C;SINGLE_CHOICE
+28;Что такое enum в Java?;Числовой тип# Перечисление# Класс# Интерфейс# Метод;Перечисление;SINGLE_CHOICE
+29;Какой класс используется для работы с потоками?;Thread# Process# Task# Job# Run;Thread;SINGLE_CHOICE
+30;Что такое synchronized метод?;Статический метод# Потокобезопасный метод# Приватный метод# Публичный метод# Защищенный метод;Потокобезопасный метод;SINGLE_CHOICE
+31;Какой класс является родительским для всех исключений?;Exception# Error# Throwable# RuntimeException# IOException;Throwable;SINGLE_CHOICE
+32;Что такое generics?;Обобщенные типы# Шаблоны# Параметризованные типы# Все вышеперечисленное# Ничего из вышеперечисленного;Все вышеперечисленное;SINGLE_CHOICE
+33;Какой интерфейс используется для создания неизменяемых коллекций?;Immutable# Unmodifiable# Collections# List# Set;Unmodifiable;SINGLE_CHOICE
+34;Что такое autoboxing?;Автоматическая упаковка примитивов в объекты# Автоматическая распаковка объектов в примитивы# Оба варианта верны# Ничего из вышеперечисленного# Преобразование типов;Оба варианта верны;SINGLE_CHOICE
+35;Какой модификатор используется для запрета переопределения метода?;static# final# private# protected# public;final;SINGLE_CHOICE
+36;Что такое volatile переменная?;Константа# Переменная видимая всем потокам# Статическая переменная# Локальная переменная# Глобальная переменная;Переменная видимая всем потокам;SINGLE_CHOICE
+37;Какой класс используется для работы с датой и временем в Java 8+?;Date# Calendar# LocalDateTime# Time# DateTime;LocalDateTime;SINGLE_CHOICE
+38;Что такое лямбда-выражение?;Анонимный метод# Функциональный интерфейс# Анонимная функция# Все вышеперечисленное# Ничего из вышеперечисленного;Анонимная функция;SINGLE_CHOICE
+39;Какой интерфейс используется для создания потока?;Runnable# Callable# Thread# Process# Task;Runnable;SINGLE_CHOICE
+40;Что такое Stream API?;Потоки ввода-вывода# Функциональный способ обработки данных# Работа с файлами# Многопоточность# Сериализация;Функциональный способ обработки данных;SINGLE_CHOICE
+41;Какой класс используется для работы с файлами?;File# FileReader# FileWriter# Все вышеперечисленное# Ничего из вышеперечисленного;Все вышеперечисленное;SINGLE_CHOICE
+42;Что такое сериализация?;Преобразование объекта в поток байтов# Преобразование байтов в объект# Копирование объекта# Клонирование объекта# Создание объекта;Преобразование объекта в поток байтов;SINGLE_CHOICE
+43;Какой интерфейс используется для создания неизменяемого списка?;List# ArrayList# LinkedList# ImmutableList# UnmodifiableList;UnmodifiableList;SINGLE_CHOICE
+44;Что такое reflection?;Механизм исследования классов во время выполнения# Отражение объектов# Копирование объектов# Создание объектов# Удаление объектов;Механизм исследования классов во время выполнения;SINGLE_CHOICE
+45;Какой класс используется для работы с регулярными выражениями?;Regex# Pattern# RegExp# Regular# Expression;Pattern;SINGLE_CHOICE
+46;Что такое функциональный интерфейс?;Интерфейс с одним абстрактным методом# Интерфейс с несколькими методами# Маркерный интерфейс# Обычный интерфейс# Абстрактный интерфейс;Интерфейс с одним абстрактным методом;SINGLE_CHOICE
+47;Какой метод вызывается перед уничтожением объекта?;destroy()# finalize()# delete()# remove()# clear();finalize();SINGLE_CHOICE
+48;Что такое аннотации?;Комментарии# Метаданные# Документация# Все вышеперечисленное# Ничего из вышеперечисленного;Метаданные;SINGLE_CHOICE
+49;Какой класс используется для создания неизменяемой строки?;String# StringBuilder# StringBuffer# CharSequence# StringWriter;String;SINGLE_CHOICE
+50;Что такое методы по умолчанию в интерфейсах?;Абстрактные методы# Реализация методов в интерфейсе# Статические методы# Приватные методы# Публичные методы;Реализация методов в интерфейсе;SINGLE_CHOICE
+51;Какие модификаторы доступа существуют в Java?;public# private# protected# default# static;public# private# protected# default;MULTIPLE_CHOICE
+52;Какие примитивные типы данных есть в Java?;int# String# boolean# char# byte;int# boolean# char# byte;MULTIPLE_CHOICE
+53;Какие способы создания объектов существуют в Java?;Оператор new# Клонирование# Сериализация# Рефлексия# Фабричный метод;Оператор new# Клонирование# Сериализация# Рефлексия;MULTIPLE_CHOICE
+54;Какие виды циклов есть в Java?;while# for# do-while# foreach# until;while# for# do-while# foreach;MULTIPLE_CHOICE
+55;Какие типы исключений существуют в Java?;Checked# Unchecked# Error# Warning# Debug;Checked# Unchecked# Error;MULTIPLE_CHOICE
+56;Какие коллекции реализуют интерфейс List?;ArrayList# LinkedList# Vector# Stack# TreeList;ArrayList# LinkedList# Vector# Stack;MULTIPLE_CHOICE
+57;Какие методы определены в интерфейсе Collection?;add()# remove()# size()# contains()# get();add()# remove()# size()# contains();MULTIPLE_CHOICE
+58;Какие виды потоков ввода-вывода есть в Java?;Байтовые# Символьные# Объектные# Буферизованные# Сетевые;Байтовые# Символьные# Объектные# Буферизованные;MULTIPLE_CHOICE
+59;Какие ключевые слова используются для обработки исключений?;try# catch# finally# throw# throws;try# catch# finally# throw# throws;MULTIPLE_CHOICE
+60;Какие интерфейсы входят в Java Collection Framework?;List# Set# Map# Queue# Stack;List# Set# Map# Queue;MULTIPLE_CHOICE
+61;Какие методы можно переопределить из класса Object?;equals()# hashCode()# toString()# clone()# finalize();equals()# hashCode()# toString()# clone();MULTIPLE_CHOICE
+62;Какие виды внутренних классов существуют в Java?;Статические# Нестатические# Локальные# Анонимные# Внешние;Статические# Нестатические# Локальные# Анонимные;MULTIPLE_CHOICE
+63;Какие операторы используются для ветвления в Java?;if# switch# case# break# continue;if# switch# case;MULTIPLE_CHOICE
+64;Какие виды комментариев есть в Java?;Однострочные# Многострочные# Документационные# Системные# Пользовательские;Однострочные# Многострочные# Документационные;MULTIPLE_CHOICE
+65;Какие интерфейсы используются для многопоточности?;Runnable# Callable# Thread# Process# Task;Runnable# Callable;MULTIPLE_CHOICE
+66;Какие коллекции являются потокобезопасными?;Vector# Hashtable# ConcurrentHashMap# Stack# ArrayList;Vector# Hashtable# ConcurrentHashMap# Stack;MULTIPLE_CHOICE
+67;Какие методы есть в классе String?;length()# substring()# indexOf()# charAt()# append();length()# substring()# indexOf()# charAt();MULTIPLE_CHOICE
+68;Какие виды наследования поддерживает Java?;Одиночное# Множественное через интерфейсы# Иерархическое# Многоуровневое# Гибридное;Одиночное# Множественное через интерфейсы# Иерархическое# Многоуровневое;MULTIPLE_CHOICE
+69;Какие функциональные интерфейсы есть в Java 8+?;Predicate# Function# Consumer# Supplier# Operator;Predicate# Function# Consumer# Supplier;MULTIPLE_CHOICE
+70;Какие методы можно использовать для работы с файлами?;read()# write()# close()# open()# delete();read()# write()# close()# delete();MULTIPLE_CHOICE
+71;Какие виды сериализации существуют в Java?;Стандартная# Внешняя# Пользовательская# XML# JSON;Стандартная# Внешняя# XML# JSON;MULTIPLE_CHOICE
+72;Какие коллекции реализуют интерфейс Set?;HashSet# TreeSet# LinkedHashSet# SortedSet# ArrayList;HashSet# TreeSet# LinkedHashSet;MULTIPLE_CHOICE
+73;Какие виды памяти есть в JVM?;Heap# Stack# Method Area# PC Register# Native Method Stack;Heap# Stack# Method Area# PC Register# Native Method Stack;MULTIPLE_CHOICE
+74;Какие методы есть в интерфейсе Map?;put()# get()# remove()# containsKey()# size();put()# get()# remove()# containsKey()# size();MULTIPLE_CHOICE
+75;Какие виды классов загрузчиков существуют в Java?;Bootstrap# Extension# Application# System# Custom;Bootstrap# Extension# Application;MULTIPLE_CHOICE
+76;Какие аннотации входят в стандартную библиотеку Java?;Override# Deprecated# SuppressWarnings# FunctionalInterface# SafeVarargs;Override# Deprecated# SuppressWarnings# FunctionalInterface# SafeVarargs;MULTIPLE_CHOICE
+77;Какие операторы используются для работы с битами?;AND# OR# XOR# NOT# SHIFT;AND# OR# XOR# NOT# SHIFT;MULTIPLE_CHOICE
+78;Какие методы есть в классе Arrays?;sort()# binarySearch()# copyOf()# fill()# asList();sort()# binarySearch()# copyOf()# fill()# asList();MULTIPLE_CHOICE
+79;Какие виды ссылок существуют в Java?;Strong# Weak# Soft# Phantom# Virtual;Strong# Weak# Soft# Phantom;MULTIPLE_CHOICE
+80;Какие методы есть в классе Collections?;sort()# shuffle()# reverse()# min()# max();sort()# shuffle()# reverse()# min()# max();MULTIPLE_CHOICE
+81;Какие виды пулов потоков есть в Java?;Fixed# Cached# Scheduled# Single# Custom;Fixed# Cached# Scheduled# Single;MULTIPLE_CHOICE
+82;Какие методы есть в классе Math?;abs()# sqrt()# pow()# random()# round();abs()# sqrt()# pow()# random()# round();MULTIPLE_CHOICE
+83;Какие виды сортировки поддерживаются в Java?;Quick# Merge# Bubble# Insertion# Selection;Quick# Merge# Insertion;MULTIPLE_CHOICE
+84;Какие интерфейсы используются для работы со строками?;CharSequence# Comparable# Serializable# Cloneable# Appendable;CharSequence# Comparable# Serializable;MULTIPLE_CHOICE
+85;Какие виды кодировок поддерживает Java?;UTF-8# UTF-16# ASCII# ISO-8859-1# Windows-1251;UTF-8# UTF-16# ASCII# ISO-8859-1;MULTIPLE_CHOICE
+86;Какие методы есть в классе System?;gc()# exit()# currentTimeMillis()# getProperties()# arraycopy();gc()# exit()# currentTimeMillis()# getProperties()# arraycopy();MULTIPLE_CHOICE
+87;Какие виды очередей есть в Java?;PriorityQueue# ArrayDeque# LinkedList# BlockingQueue# ConcurrentLinkedQueue;PriorityQueue# ArrayDeque# BlockingQueue# ConcurrentLinkedQueue;MULTIPLE_CHOICE
+88;Какие методы есть в интерфейсе Comparable?;compareTo()# equals()# hashCode()# compare()# sort();compareTo();MULTIPLE_CHOICE
+89;Какие виды синхронизации существуют в Java?;Synchronized методы# Synchronized блоки# Volatile переменные# Lock интерфейс# Atomic классы;Synchronized методы# Synchronized блоки# Volatile переменные# Lock интерфейс;MULTIPLE_CHOICE
+90;Какие методы есть в классе Thread?;start()# run()# sleep()# join()# interrupt();start()# run()# sleep()# join()# interrupt();MULTIPLE_CHOICE
+91;Какие виды паттернов поддерживает Java?;Singleton# Factory# Builder# Observer# Decorator;Singleton# Factory# Builder# Observer# Decorator;MULTIPLE_CHOICE
+92;Какие методы есть в классе Object?;equals()# hashCode()# toString()# clone()# getClass();equals()# hashCode()# toString()# clone()# getClass();MULTIPLE_CHOICE
+93;Какие виды операторов есть в Java?;Арифметические# Логические# Побитовые# Сравнения# Присваивания;Арифметические# Логические# Побитовые# Сравнения# Присваивания;MULTIPLE_CHOICE
+94;Какие методы есть в интерфейсе List?;add()# get()# remove()# size()# contains();add()# get()# remove()# size()# contains();MULTIPLE_CHOICE
+95;Какие виды модификаторов есть в Java?;Доступа# Static# Final# Abstract# Synchronized;Доступа# Static# Final# Abstract# Synchronized;MULTIPLE_CHOICE
+96;Какие методы есть в классе Calendar?;getInstance()# getTime()# setTime()# add()# clear();getInstance()# getTime()# setTime()# add()# clear();MULTIPLE_CHOICE
+97;Какие виды констант существуют в Java?;Static Final# Enum# Interface Constants# Public Final# Private Final;Static Final# Enum# Interface Constants;MULTIPLE_CHOICE
+98;Какие методы есть в классе StringBuilder?;append()# insert()# delete()# reverse()# toString();append()# insert()# delete()# reverse()# toString();MULTIPLE_CHOICE
+99;Какие виды потоков данных есть в Java?;InputStream# OutputStream# Reader# Writer# Stream;InputStream# OutputStream# Reader# Writer;MULTIPLE_CHOICE
+100;Какие методы есть в интерфейсе Serializable?;writeObject()# readObject()# writeExternal()# readExternal();writeObject()# readObject();MULTIPLE_CHOICE
 101;Сколько примитивных типов данных в Java?;;8;TEXT
 102;Максимальное значение типа int?;;2147483647;TEXT
 103;Какой модификатор доступа используется по умолчанию?;;default;TEXT
@@ -132,7 +190,7 @@
 132;Какой оператор используется для обработки исключений?;;try;TEXT
 133;Какой класс используется для случайных чисел?;;Random;TEXT
 134;Какой метод преобразует объект в строку?;;toString;TEXT
-135;Какой символ используется для разделения параметров?;;,;TEXT
+135;Какой символ используется для разделения параметров?;;#;TEXT
 136;Какой класс используется для буферизации строк?;;StringBuilder;TEXT
 137;Какой интерфейс используется для очереди?;;Queue;TEXT
 138;Какой модификатор скрывает реализацию метода?;;private;TEXT
@@ -148,6 +206,6 @@
 148;Какой оператор используется для условного выбора?;;if;TEXT
 149;Какой класс используется для работы с коллекциями?;;Collections;TEXT
 150;Какой метод вычисляет хеш-код объекта?;;hashCode;TEXT
-151;Какой язык программирования используется в Android?;Java, Kotlin;Kotlin;SINGLE_CHOICE
-152;Что означает ООП?;Объектно-Ориентированное Программирование, Операционная Обработка Программ;Объектно-Ориентированное Программирование;SINGLE_CHOICE
-153;Какая основная функция у Spring Framework?;Упрощение разработки приложений, Оптимизация памяти;Упрощение разработки приложений;MULTIPLE_CHOICE
+151;Какой язык программирования используется в Android?;Java# Kotlin;Kotlin;SINGLE_CHOICE
+152;Что означает ООП?;Объектно-Ориентированное Программирование# Операционная Обработка Программ;Объектно-Ориентированное Программирование;SINGLE_CHOICE
+153;Какая основная функция у Spring Framework?;Упрощение разработки приложений# Оптимизация памяти;Упрощение разработки приложений;MULTIPLE_CHOICE
